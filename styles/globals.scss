@@ -1,0 +1,30 @@
+@import "variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  text-decoration: none;
+  background: transparent;
+  font-size: 1rem;
+  user-select: none;
+  color: black;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: white;
+  font-family: $roboto-mono;
+  position: relative;
+}
+
+button {
+  cursor: pointer;
+}
