@@ -27,6 +27,19 @@
   }
 }
 
+.container {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+.border {
+  position: absolute;
+  left: -2px;
+  width: calc(100% + 4px);
+  border: 2px solid $light;
+}
+
 @keyframes blink {
   0% {
     opacity: 1;

@@ -21,6 +21,7 @@ const Typed = ({
   const [len, setLen] = useState(0);
   const [inView, setInView] = useState(false);
   const [showCursor, setShowCursor] = useState(false);
+  const [border, setBorder] = useState({ height: 0, top: 0 });
 
   useEffect(() => {
     const detect = () => {
@@ -29,7 +30,6 @@ const Typed = ({
       ) {
         window.removeEventListener("scroll", detect);
         setInView(true);
-        setShowCursor(true);
       }
     };
     window.addEventListener("scroll", detect);
@@ -43,6 +43,7 @@ const Typed = ({
   useEffect(() => {
     if (ready && inView) {
       if (len < charsRef.current.length) {
+        setShowCursor(true);
         timeoutRef.current = setTimeout(() => {
           setLen((l) => l + 1);
         }, Math.random() * (bounds[1] - bounds[0]) + bounds[0]);
@@ -57,10 +58,11 @@ const Typed = ({
   }, [len, ready, inView]);
 
   return (
-    <span ref={elRef} className={`${classes.span}`}>
+    <span className={`${classes.span} ${classes.container}`}>
       {charsRef.current.map((c, i) => (
         <span
           key={i}
+          ref={i === len - 1 ? elRef : undefined}
           className={`${classes.span} ${
             i < len ? classes.show : classes.hide
           } ${i === len - 1 && showCursor ? classes.last : ""}`}
@@ -68,6 +70,15 @@ const Typed = ({
           {c}
         </span>
       ))}
+      {showCursor && elRef.current && (
+        <span
+          className={classes.border}
+          style={{
+            top: elRef.current.offsetTop,
+            height: elRef.current?.offsetHeight + 4,
+          }}
+        />
+      )}
     </span>
   );
 };
