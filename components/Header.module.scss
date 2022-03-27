@@ -25,6 +25,7 @@
 
 .home {
   padding: 0.25rem 0.5rem;
+  margin-left: -0.5rem;
   &:hover {
     background: $lighter;
   }
@@ -79,6 +80,7 @@
   }
   .home {
     padding: 0.5rem 0.75rem;
+    margin-left: -0.75rem;
   }
   .mobile__menuWrapper {
     display: none;
@@ -151,7 +153,7 @@
     }
   }
   .headerWrapper {
-    max-width: 1200px;
+    max-width: $max-width;
   }
   .projectsContainer {
     .projectsWrapper {
