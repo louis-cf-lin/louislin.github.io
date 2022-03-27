@@ -28,6 +28,7 @@
 .home {
   padding: 0.25rem 0.5rem;
   margin-left: -0.5rem;
+  transition: background-color 0.1s ease-out;
   &:hover {
     background: $lighter;
   }
@@ -96,6 +97,7 @@
       padding: 0.5rem 1rem;
       opacity: 0.5;
       position: relative;
+      transition: opacity 0.1s ease-out;
       &:hover {
         opacity: 1;
       }
@@ -132,6 +134,7 @@
       bottom: 0;
       right: 0.75rem;
       transform: translateY(100%);
+      background: white;
       .projectsMenu {
         display: flex;
         flex-direction: column;

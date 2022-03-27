@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useParallax } from "react-scroll-parallax";
 import { useEffect, useState } from "react";
+import YouTube from "react-youtube";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Typed from "../components/Typed";
@@ -28,6 +29,8 @@ const Home: NextPage = () => {
   const [h2BReady, setH2BReady] = useState(false);
   const [pAReady, setPAReady] = useState(PARAS_A.map((_) => false));
   const [pBReady, setPBReady] = useState(PARAS_B.map((_) => false));
+  const [youtubeReady, setYoutubeReady] = useState(false);
+  const [showPreview, setShowPreview] = useState(true);
   const { ref } = useParallax<HTMLDivElement>({
     speed: -100,
   });
@@ -105,14 +108,44 @@ const Home: NextPage = () => {
                 text={p}
                 ready={pBReady[i]}
                 callback={() =>
-                  setPBReady((state) =>
-                    state.map((_s, _i) => (_i === i + 1 ? true : _s))
-                  )
+                  i === PARAS_B.length - 1
+                    ? setYoutubeReady(true)
+                    : setPBReady((state) =>
+                        state.map((_s, _i) => (_i === i + 1 ? true : _s))
+                      )
                 }
-                bounds={[40, 20, 250]}
+                bounds={[20, 40, 250]}
               />
             </p>
           ))}
+          <div
+            className={`${classes.youtubeContainer} ${
+              youtubeReady ? classes.show : ""
+            }`}
+          >
+            {showPreview ? (
+              <div
+                className={classes.youtubePreview}
+                onClick={() => setShowPreview(false)}
+              >
+                <Image
+                  src="/home-youtube.jpg"
+                  layout="fill"
+                  alt="Snow Motion | Queenstown NZ"
+                />
+                <p>[Click to play]</p>
+              </div>
+            ) : (
+              <YouTube
+                videoId="O-5r8IXsRns"
+                className={classes.youtube}
+                containerClassName={classes.youtubeWrapper}
+                title="Snow Motion | Queenstown NZ"
+                opts={{ playerVars: { rel: 0, autoplay: 1 } }}
+                onEnd={() => setShowPreview(true)}
+              />
+            )}
+          </div>
         </main>
         <Footer />
       </div>
