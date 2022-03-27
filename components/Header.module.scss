@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
   height: 3.5rem;
   * {
     font-size: 12px;
@@ -13,9 +13,13 @@
 }
 
 .home {
+  padding: 0.25rem 0.5rem;
+  &:hover {
+    background: $lighter;
+  }
 }
 
-.menuWrapper {
+.mobile__menuWrapper {
   position: relative;
   height: 100%;
   display: flex;
@@ -32,12 +36,119 @@
     transform: translateY(100%);
     display: flex;
     flex-direction: column;
-    padding: 0.25rem 0;
+    padding: 0.25rem 0.25rem 0 0;
     box-shadow: 0 4px 16px 0 rgba(black, 0.05);
     a {
       display: flex;
       align-content: center;
-      padding: 0.5rem 1.5rem 0.5rem 1rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+  .submenu {
+    display: flex;
+    flex-direction: column;
+    a {
+      font-size: 10px;
+      padding-left: 1.5rem;
+    }
+  }
+}
+
+.tabContainer {
+  display: none;
+}
+
+@media only screen and (min-width: 480px) {
+  .header {
+    padding: 0 1.5rem;
+    height: 4rem;
+    * {
+      font-size: 14px;
+    }
+  }
+  .home {
+    padding: 0.5rem 0.75rem;
+  }
+  .mobile__menuWrapper {
+    display: none;
+  }
+  .tabContainer {
+    display: flex;
+    align-items: center;
+    .tab {
+      padding: 0.5rem 1rem;
+      opacity: 0.5;
+      position: relative;
+      &:hover {
+        opacity: 1;
+      }
+      &::after {
+        pointer-events: none;
+        content: "";
+        position: absolute;
+        bottom: 0rem;
+        right: 0.75rem;
+        background: black;
+        height: 2px;
+        width: 0;
+        transition: width 0.2s ease-out;
+      }
+      &.active {
+        opacity: 1;
+        &::after {
+          height: 2px;
+          width: calc(100% - 1.5rem);
+        }
+      }
+    }
+  }
+  .projectsContainer {
+    position: relative;
+    cursor: pointer;
+    .tab.hovered {
+      opacity: 1;
+    }
+    .projectsWrapper {
+      padding-top: 0.75rem;
+      position: absolute;
+      bottom: 0;
+      right: 0.75rem;
+      transform: translateY(100%);
+      .projectsMenu {
+        display: flex;
+        flex-direction: column;
+        padding: 0.25rem 0;
+        box-shadow: 0 4px 16px 0 rgba(black, 0.05);
+        a {
+          font-size: 13px;
+          padding: 0.5rem 1rem;
+          &:hover {
+            background: $lighter;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .header {
+    padding: 0 2rem;
+    height: 5rem;
+    * {
+      font-size: 16px;
+    }
+  }
+  .projectsContainer {
+    .projectsWrapper {
+      padding-top: 0.75rem;
+      .projectsMenu {
+        padding: 0.25rem 0;
+        a {
+          font-size: 14px;
+          padding: 0.75rem 1rem;
+        }
+      }
     }
   }
 }
