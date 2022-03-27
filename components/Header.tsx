@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import classes from "./Header.module.scss";
 import { MenuI } from "./Icon";
 
@@ -38,15 +38,29 @@ const PROJECTS = [
   },
 ];
 
-const Header = () => {
+const Header = (): JSX.Element => {
   const router = useRouter();
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
   const [projectsIsOpen, setProjectsIsOpen] = useState(false);
+  const [clearBg, setClearBg] = useState(true);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        setClearBg(false);
+      } else {
+        setClearBg(true);
+      }
+    });
+  }, []);
 
   const toggleMenu = () => setMobileMenuIsOpen((state) => !state);
 
   return (
-    <header className={classes.headerContainer}>
+    <header
+      className={classes.headerContainer}
+      style={{ background: clearBg ? "transparent" : "white" }}
+    >
       <div className={classes.headerWrapper}>
         <Link href="/">
           <a className={classes.home} title="Home">

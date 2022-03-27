@@ -6,10 +6,12 @@
   left: 0;
   width: 100%;
   padding: 0 1.25rem;
-  height: 3.5rem;
+  height: $mobile-header;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
+  transition: background-color 0.1s ease-out;
   * {
     font-size: 12px;
   }
@@ -42,13 +44,15 @@
     justify-content: center;
   }
   .menu {
+    z-index: 100;
     position: absolute;
     bottom: 0;
     right: 0;
     transform: translateY(100%);
     display: flex;
     flex-direction: column;
-    padding: 0.25rem 0.25rem 0 0;
+    padding: 0.25rem 0;
+    background: white;
     box-shadow: 0 4px 16px 0 rgba(black, 0.05);
     a {
       display: flex;
@@ -73,7 +77,7 @@
 @media only screen and (min-width: 480px) {
   .headerContainer {
     padding: 0 1.5rem;
-    height: 4rem;
+    height: $tablet-header;
     * {
       font-size: 14px;
     }
@@ -122,6 +126,7 @@
       opacity: 1;
     }
     .projectsWrapper {
+      z-index: 100;
       padding-top: 0.75rem;
       position: absolute;
       bottom: 0;
@@ -147,7 +152,7 @@
 @media only screen and (min-width: 1200px) {
   .headerContainer {
     padding: 0 2rem;
-    height: 5rem;
+    height: $desktop-header;
     * {
       font-size: 16px;
     }

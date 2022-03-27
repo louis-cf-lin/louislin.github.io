@@ -1,10 +1,41 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Image from "next/image";
+import { useParallax } from "react-scroll-parallax";
+import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Typed from "../components/Typed";
 import classes from "../styles/index.module.scss";
 
+const PARAS_A = [
+  "I have a [Masters](/academia) in Computer Science and a Bachelor of Engineering Honours ",
+  "While studying, I co-founded [CreateBase](/projects/createbase)",
+  "Other [projects](/projects) I've worked on:",
+  "- [IAMSL app](/projects/iamsl)",
+  "- [Kessler](/projects/kessler)",
+];
+
+const PARAS_B = [
+  "I like rowing and automating random stuff",
+  "I also film and edit videos for fun: [Louii Studios](youtube.com/user/LouiiL)",
+  "Here's my latest work---*Snow Motion*",
+];
+
 const Home: NextPage = () => {
+  const [h1Ready, setH1Ready] = useState(false);
+  const [h2AReady, setH2AReady] = useState(false);
+  const [h2BReady, setH2BReady] = useState(false);
+  const [pAReady, setPAReady] = useState(PARAS_A.map((_) => false));
+  const [pBReady, setPBReady] = useState(PARAS_B.map((_) => false));
+  const { ref } = useParallax<HTMLDivElement>({
+    speed: -100,
+  });
+
+  useEffect(() => {
+    setTimeout(() => setH1Ready(true), 500);
+  }, []);
+
   return (
     <div className={classes.page}>
       <Head>
@@ -13,61 +44,78 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-
-      {/* <main className={classes.main}>
-        <h1 className={classes.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={classes.description}>
-          Get started by editing{" "}
-          <code className={classes.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={classes.grid}>
-          <a href="https://nextjs.org/docs" className={classes.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={classes.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={classes.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={classes.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <div className={classes.wrapper}>
+        <div ref={ref} className={classes.bg}>
+          <Image
+            src="/home-bg.jpg"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            alt="Background image"
+          />
         </div>
-      </main>
-
-      <footer className={classes.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={classes.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer> */}
-      <Footer />
+        <main className={classes.main}>
+          <h1 className={classes.h1}>
+            <Typed
+              text="# Hi, I'm Louis and I write code"
+              ready={h1Ready}
+              callback={() => setH2AReady(true)}
+              bounds={[125, 25, 1500]}
+            />
+          </h1>
+          <h2 className={classes.h2}>
+            <Typed
+              text="## Mostly in Python &amp; TypeScript"
+              ready={h2AReady}
+              callback={() =>
+                setPAReady((state) => state.map((_, i) => i === 0))
+              }
+              bounds={[50, 25, 1000]}
+            />
+          </h2>
+          {PARAS_A.map((p, i) => (
+            <p key={"paras_a" + i} className={classes.p}>
+              <Typed
+                text={p}
+                ready={pAReady[i]}
+                callback={() =>
+                  i === PARAS_A.length - 1
+                    ? setH2BReady(true)
+                    : setPAReady((state) =>
+                        state.map((_s, _i) => (_i === i + 1 ? true : _s))
+                      )
+                }
+                bounds={[40, 20, 250]}
+              />
+            </p>
+          ))}
+          <h2 className={classes.h2}>
+            <Typed
+              text="## Other fun stuff I do"
+              ready={h2BReady}
+              callback={() =>
+                setPBReady((state) => state.map((_, i) => i === 0))
+              }
+              bounds={[75, 25, 1000]}
+            />
+          </h2>
+          {PARAS_B.map((p, i) => (
+            <p key={"paras_b" + i} className={classes.p}>
+              <Typed
+                text={p}
+                ready={pBReady[i]}
+                callback={() =>
+                  setPBReady((state) =>
+                    state.map((_s, _i) => (_i === i + 1 ? true : _s))
+                  )
+                }
+                bounds={[40, 20, 250]}
+              />
+            </p>
+          ))}
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 };

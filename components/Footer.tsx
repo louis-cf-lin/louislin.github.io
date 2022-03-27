@@ -15,7 +15,7 @@ const TABS = [
   },
 ];
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
   return (
     <footer className={classes.footer}>
       <div className={classes.inner}>
