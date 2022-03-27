@@ -46,88 +46,90 @@ const Header = () => {
   const toggleMenu = () => setMobileMenuIsOpen((state) => !state);
 
   return (
-    <header className={classes.header}>
-      <Link href="/">
-        <a className={classes.home} title="Home">
-          louis.md
-        </a>
-      </Link>
-      <div
-        className={classes.mobile__menuWrapper}
-        onBlur={() => setMobileMenuIsOpen(false)}
-      >
-        <button className={classes.menuBtn} onClick={toggleMenu}>
-          <MenuI />
-        </button>
-        {mobileMenuIsOpen && (
-          <div className={classes.menu}>
-            {TABS.map((t) => (
-              <Fragment key={t.href}>
+    <header className={classes.headerContainer}>
+      <div className={classes.headerWrapper}>
+        <Link href="/">
+          <a className={classes.home} title="Home">
+            louis.md
+          </a>
+        </Link>
+        <div
+          className={classes.mobile__menuWrapper}
+          onBlur={() => setMobileMenuIsOpen(false)}
+        >
+          <button className={classes.menuBtn} onClick={toggleMenu}>
+            <MenuI />
+          </button>
+          {mobileMenuIsOpen && (
+            <div className={classes.menu}>
+              {TABS.map((t) => (
+                <Fragment key={t.href}>
+                  <Link href={t.href}>
+                    <a>{t.label}</a>
+                  </Link>
+                  {t.href === "/projects" && (
+                    <div className={classes.submenu}>
+                      {PROJECTS.map((p) => (
+                        <Link key={p.href} href={p.href}>
+                          {p.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </Fragment>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className={classes.tabContainer}>
+          {TABS.map((t) =>
+            t.href === "/projects" ? (
+              <div
+                className={classes.projectsContainer}
+                onMouseOver={() => setProjectsIsOpen(true)}
+                onMouseLeave={() => setProjectsIsOpen(false)}
+                key={t.href}
+              >
                 <Link href={t.href}>
-                  <a>{t.label}</a>
+                  <a
+                    className={`${classes.tab} ${
+                      router.asPath === t.href ? classes.active : ""
+                    } ${projectsIsOpen ? classes.hovered : ""}`}
+                    title={t.label}
+                  >
+                    {t.label}
+                  </a>
                 </Link>
-                {t.href === "/projects" && (
-                  <div className={classes.submenu}>
-                    {PROJECTS.map((p) => (
-                      <Link key={p.href} href={p.href}>
-                        {p.label}
-                      </Link>
-                    ))}
+                {projectsIsOpen && (
+                  <div
+                    className={classes.projectsWrapper}
+                    onMouseOver={() => setProjectsIsOpen(true)}
+                    onMouseLeave={() => setProjectsIsOpen(false)}
+                  >
+                    <div className={classes.projectsMenu}>
+                      {PROJECTS.map((p) => (
+                        <Link key={p.href} href={p.href}>
+                          <a title={p.label}>{p.label}</a>
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 )}
-              </Fragment>
-            ))}
-          </div>
-        )}
-      </div>
-      <div className={classes.tabContainer}>
-        {TABS.map((t) =>
-          t.href === "/projects" ? (
-            <div
-              className={classes.projectsContainer}
-              onMouseOver={() => setProjectsIsOpen(true)}
-              onMouseLeave={() => setProjectsIsOpen(false)}
-              key={t.href}
-            >
-              <Link href={t.href}>
+              </div>
+            ) : (
+              <Link key={t.href} href={t.href}>
                 <a
                   className={`${classes.tab} ${
                     router.asPath === t.href ? classes.active : ""
-                  } ${projectsIsOpen ? classes.hovered : ""}`}
+                  }`}
                   title={t.label}
                 >
                   {t.label}
                 </a>
               </Link>
-              {projectsIsOpen && (
-                <div
-                  className={classes.projectsWrapper}
-                  onMouseOver={() => setProjectsIsOpen(true)}
-                  onMouseLeave={() => setProjectsIsOpen(false)}
-                >
-                  <div className={classes.projectsMenu}>
-                    {PROJECTS.map((p) => (
-                      <Link key={p.href} href={p.href}>
-                        <a title={p.label}>{p.label}</a>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          ) : (
-            <Link key={t.href} href={t.href}>
-              <a
-                className={`${classes.tab} ${
-                  router.asPath === t.href ? classes.active : ""
-                }`}
-                title={t.label}
-              >
-                {t.label}
-              </a>
-            </Link>
-          )
-        )}
+            )
+          )}
+        </div>
       </div>
     </header>
   );
