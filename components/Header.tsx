@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import classes from "./Header.module.scss";
-import { MenuI } from "./Icon";
+import { MenuI, PlayI, CodeI } from "./Icon";
 
 const TABS = [
   {
@@ -38,7 +38,12 @@ const PROJECTS = [
   },
 ];
 
-const Header = (): JSX.Element => {
+interface Props {
+  isRendered: boolean;
+  compile?: () => void;
+}
+
+const Header = ({ compile, isRendered }: Props): JSX.Element => {
   const router = useRouter();
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
   const [projectsIsOpen, setProjectsIsOpen] = useState(false);
@@ -67,33 +72,40 @@ const Header = (): JSX.Element => {
             louis.md
           </a>
         </Link>
-        <div
-          className={classes.mobile__menuWrapper}
-          onBlur={() => setMobileMenuIsOpen(false)}
-        >
-          <button className={classes.menuBtn} onClick={toggleMenu}>
-            <MenuI />
-          </button>
-          {mobileMenuIsOpen && (
-            <div className={classes.menu}>
-              {TABS.map((t) => (
-                <Fragment key={t.href}>
-                  <Link href={t.href}>
-                    <a>{t.label}</a>
-                  </Link>
-                  {t.href === "/projects" && (
-                    <div className={classes.submenu}>
-                      {PROJECTS.map((p) => (
-                        <Link key={p.href} href={p.href}>
-                          {p.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </Fragment>
-              ))}
-            </div>
+        <div className={classes.mobileOnly}>
+          {compile && (
+            <button className={classes.play} onClick={compile}>
+              {isRendered ? <CodeI /> : <PlayI />}
+            </button>
           )}
+          <div
+            className={classes.mobileMenuWrapper}
+            onBlur={() => setMobileMenuIsOpen(false)}
+          >
+            <button className={classes.menuBtn} onClick={toggleMenu}>
+              <MenuI />
+            </button>
+            {mobileMenuIsOpen && (
+              <div className={classes.menu}>
+                {TABS.map((t) => (
+                  <Fragment key={t.href}>
+                    <Link href={t.href}>
+                      <a>{t.label}</a>
+                    </Link>
+                    {t.href === "/projects" && (
+                      <div className={classes.submenu}>
+                        {PROJECTS.map((p) => (
+                          <Link key={p.href} href={p.href}>
+                            {p.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </Fragment>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
         <div className={classes.tabContainer}>
           {TABS.map((t) =>
@@ -145,6 +157,21 @@ const Header = (): JSX.Element => {
           )}
         </div>
       </div>
+      <button
+        className={classes.compile}
+        title={isRendered ? "To code" : "Compile"}
+        onClick={compile}
+      >
+        {isRendered ? (
+          <>
+            <CodeI /> to code
+          </>
+        ) : (
+          <>
+            <PlayI /> compile
+          </>
+        )}
+      </button>
     </header>
   );
 };

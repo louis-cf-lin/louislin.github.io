@@ -3,25 +3,26 @@ import { useEffect, useRef, useState } from "react";
 import classes from "./Typed.module.scss";
 
 interface Props {
-  text: string;
+  html: { rendered: JSX.Element; typed: string };
   ready: boolean;
+  isRendered: boolean;
   callback?: () => void;
   bounds?: [number, number, number];
 }
 
 const Typed = ({
-  text,
+  html,
   ready,
+  isRendered,
   bounds = [25, 50, 1000],
   callback,
 }: Props): JSX.Element => {
   const elRef = useRef<HTMLSpanElement>(null);
-  const charsRef = useRef(text.split(""));
+  const charsRef = useRef(html.typed.split(""));
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [len, setLen] = useState(0);
   const [inView, setInView] = useState(false);
   const [showCursor, setShowCursor] = useState(false);
-  const [border, setBorder] = useState({ height: 0, top: 0 });
 
   useEffect(() => {
     const detect = () => {
@@ -57,12 +58,19 @@ const Typed = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [len, ready, inView]);
 
+  if (isRendered)
+    return (
+      <span className={`${classes.span} ${classes.rendered}`}>
+        {html.rendered}
+      </span>
+    );
+
   return (
     <span className={`${classes.span} ${classes.container}`}>
       {charsRef.current.map((c, i) => (
         <span
           key={i}
-          ref={i === len - 1 ? elRef : undefined}
+          ref={i === len ? elRef : undefined}
           className={`${classes.span} ${
             i < len ? classes.show : classes.hide
           } ${i === len - 1 && showCursor ? classes.last : ""}`}

@@ -1,5 +1,29 @@
 @import "/styles/variables";
 
+.span.rendered {
+  font-family: $poppins !important;
+  a {
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 25%;
+      height: 1px;
+      background: grey;
+      transition: width 0.2s ease-out, background-color 0.1s ease-out;
+    }
+    &:hover::after {
+      width: 100%;
+      background: black;
+    }
+  }
+  i {
+    font-style: italic;
+  }
+}
+
 .span {
   font-size: inherit;
   font-family: inherit;
