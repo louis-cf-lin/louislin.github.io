@@ -121,7 +121,9 @@
 
 @media only screen and (min-width: 480px) {
   .main {
-    padding: 20vh 0;
+    padding: 20vh 0 10vh 0;
+    max-width: 600px;
+    align-self: center;
   }
   .h1 {
     font-size: 3rem;
@@ -136,8 +138,8 @@
 
 @media only screen and (min-width: 1200px) {
   .main {
+    padding: 20vh 0;
     max-width: $max-width;
-    align-self: center;
   }
   .h1 {
     font-size: 4rem;

@@ -29,6 +29,12 @@
   }
 }
 
+.gridDisplay {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .team {
   position: relative;
   width: 100%;
@@ -181,7 +187,89 @@
 
 @media only screen and (min-width: 1200px) {
   .main {
-    align-self: center;
     max-width: $max-width;
+  }
+  .h1 {
+    font-size: 4.5rem;
+    margin: 2rem 0;
+  }
+  .h2 {
+    font-size: 3rem;
+    margin: 1rem 0;
+    max-width: 50rem;
+  }
+  .p {
+    width: 100%;
+    font-size: 16px;
+    margin: 1rem 0;
+    max-width: 30rem;
+  }
+  .banner {
+    margin: 5rem 0;
+    .cbLogo {
+      margin: 2rem 0;
+      position: relative;
+      width: 12rem;
+    }
+  }
+  .gridDisplay {
+    margin: 4rem 0;
+    display: grid;
+    grid-template-areas:
+      "team intro"
+      "content collage";
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-column-gap: 4rem;
+    grid-row-gap: 6rem;
+  }
+  .team {
+    margin: 0;
+    grid-area: team;
+  }
+  .collage {
+    margin: 0;
+    grid-area: collage;
+  }
+  .intro {
+    margin: 0;
+    grid-area: intro;
+    justify-content: flex-end;
+  }
+  .content {
+    grid-area: content;
+    margin: 0;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .demo {
+    margin: 4rem 0;
+    .demoToggle {
+      margin-top: 1rem;
+      height: 3rem;
+      button {
+        font-size: 18px;
+        padding: 0 1.5rem;
+      }
+    }
+  }
+  .rbb {
+    margin: 4rem 0;
+    .rbbContent {
+      width: auto;
+      align-self: center;
+      flex-direction: row;
+      align-items: flex-end;
+      margin: 2rem 0;
+      .rbbVidContainer {
+        width: 40rem;
+        height: 22.5rem;
+        padding: 0;
+      }
+      .p {
+        margin-left: 3rem;
+        max-width: 16rem;
+        align-self: flex-end;
+      }
+    }
   }
 }

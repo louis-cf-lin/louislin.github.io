@@ -226,7 +226,7 @@ const Home: NextPage = () => {
           </div>
           <div
             className={`${classes.youtubeContainer} ${
-              youtubeReady ? classes.show : ""
+              youtubeReady || isRendered ? classes.show : ""
             }`}
             style={{ marginLeft: isRendered ? 0 : "5vw" }}
           >
