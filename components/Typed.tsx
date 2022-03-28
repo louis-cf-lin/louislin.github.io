@@ -43,7 +43,7 @@ const Typed = ({
 
   useEffect(() => {
     if (ready && inView) {
-      if (len < charsRef.current.length) {
+      if (len <= charsRef.current.length) {
         setShowCursor(true);
         timeoutRef.current = setTimeout(() => {
           setLen((l) => l + 1);
@@ -70,10 +70,12 @@ const Typed = ({
       {charsRef.current.map((c, i) => (
         <span
           key={i}
-          ref={i === len ? elRef : undefined}
+          ref={i === len - 1 ? elRef : undefined}
           className={`${classes.span} ${
             i < len ? classes.show : classes.hide
-          } ${i === len - 1 && showCursor ? classes.last : ""}`}
+          } ${i === len - 1 && showCursor ? classes.last : ""} ${
+            i === charsRef.current.length - 1 && showCursor ? classes.final : ""
+          }`}
         >
           {c}
         </span>

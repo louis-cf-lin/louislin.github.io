@@ -35,7 +35,8 @@
   &.show {
     opacity: 1;
   }
-  &.last {
+  &.last,
+  &.final {
     position: relative;
     &::after {
       content: "";
