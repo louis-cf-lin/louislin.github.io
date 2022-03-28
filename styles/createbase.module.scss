@@ -151,20 +151,30 @@
     max-width: 600px;
   }
   .h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   .h2 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
   .p {
     font-size: 13px;
+    margin: 0.75rem 0;
   }
-  .demo .demoToggle {
-    margin-top: 0.5rem;
-    height: 2rem;
-    button {
-      font-size: 13px;
-      padding: 0 0.75rem;
+  .banner {
+    margin: 1.5rem 0;
+  }
+  .collage {
+    margin: 1.5rem 0;
+  }
+  .demo {
+    margin: 1.5rem 0;
+    .demoToggle {
+      margin-top: 0.5rem;
+      height: 2rem;
+      button {
+        font-size: 13px;
+        padding: 0 0.75rem;
+      }
     }
   }
 }
