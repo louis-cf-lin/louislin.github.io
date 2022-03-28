@@ -28,7 +28,7 @@ const CreateBase: NextPage = () => {
       </Head>
       <Header />
       <main className={classes.main}>
-        <ProjectsNav active="/projects/createbase" />
+        <ProjectsNav active="createbase" />
         <div className={classes.banner}>
           <h1 className={classes.h1}>
             An EdTech startup that leverages 3D simulations with programming

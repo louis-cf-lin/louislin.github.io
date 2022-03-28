@@ -108,12 +108,24 @@ export const ZoomOutI = (props: Props): JSX.Element => {
     />
   );
 };
+
 export const CenterI = (props: Props): JSX.Element => {
   return (
     <GenericI
       {...props}
       paths={[
         "M9.5 6.5L6.5 6.5L6.5 9.5M6.5 14.5L6.5 17.5H9.5M14.5 17.5H17.5V14.5M17.5 9.5V6.5L14.5 6.5M12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12C14 13.1046 13.1046 14 12 14Z",
+      ]}
+    />
+  );
+};
+
+export const DownloadI = (props: Props): JSX.Element => {
+  return (
+    <GenericI
+      {...props}
+      paths={[
+        "M6 14.5V16.9998C6 17.5522 6.44782 17.9999 7.00017 17.9998L17.0002 17.9982C17.5524 17.9981 18 17.5504 18 16.9982V14.498M12 6V13.498M12 13.498L15.5 10M12 13.498L8.5 10",
       ]}
     />
   );

@@ -141,7 +141,9 @@ const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
                 <Link href={t.href}>
                   <a
                     className={`${classes.tab} ${
-                      router.asPath === t.href ? classes.active : ""
+                      router.asPath.startsWith("/projects")
+                        ? classes.active
+                        : ""
                     } ${projectsIsOpen ? classes.hovered : ""}`}
                     title={t.title}
                   >

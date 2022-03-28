@@ -1,6 +1,7 @@
 @import "/styles/variables";
 
 .container {
+  margin: 1rem 0;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -10,6 +11,7 @@
 }
 
 .tab {
+  border-radius: 4px;
   height: 2rem;
   width: 100%;
   font-size: 12px;
@@ -29,6 +31,7 @@
 
 @media only screen and (min-width: 480px) {
   .container {
+    margin: 1.5rem 0;
     align-self: center;
     display: flex;
     align-items: center;
@@ -38,13 +41,18 @@
   }
   .tab {
     width: auto;
-    padding: 0 0.5rem;
+    padding: 0 2vw;
   }
 }
 
 @media only screen and (min-width: 1200px) {
+  .container {
+    margin: 2rem 0;
+  }
   .tab {
+    height: 3rem;
     margin-right: 1.5rem;
     font-size: 14px;
+    padding: 0 1.5rem;
   }
 }

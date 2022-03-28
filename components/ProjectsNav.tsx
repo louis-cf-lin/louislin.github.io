@@ -13,7 +13,7 @@ const ProjectsNav = ({ active }: Props): JSX.Element => {
         <Link key={p.href} href={p.href}>
           <a
             className={`${classes.tab} ${
-              active === p.href ? classes.active : ""
+              `/projects/${active}` === p.href ? classes.active : ""
             }`}
             title={p.title}
           >

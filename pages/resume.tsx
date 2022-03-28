@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Page from "../components/Page";
 import classes from "../styles/resume.module.scss";
 import Head from "next/head";
-import { CenterI, ZoomInI, ZoomOutI } from "../components/Icon";
+import { CenterI, DownloadI, ZoomInI, ZoomOutI } from "../components/Icon";
 import { NextPage } from "next";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -48,6 +48,11 @@ const Resume: NextPage = () => {
           <button onClick={centerHandler} title="Center">
             <CenterI height={32} width={32} />
           </button>
+          <a href="/louis-resume.pdf" download>
+            <button title="Download">
+              <DownloadI height={32} width={32} />
+            </button>
+          </a>
         </div>
         <Document file="/louis-resume.pdf" className={classes.container}>
           <PDFPage
