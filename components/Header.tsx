@@ -58,7 +58,7 @@ const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 10) {
         setClearBg(false);
       } else {
         setClearBg(true);

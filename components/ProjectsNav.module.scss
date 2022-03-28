@@ -17,16 +17,24 @@
   align-items: center;
   justify-content: center;
   opacity: 0.5;
+  transition: opacity 0.1s ease-out, background-color 0.1s ease-out;
   &.active {
     opacity: 1;
     background: $lighter;
+  }
+  &:hover {
+    opacity: 1;
   }
 }
 
 @media only screen and (min-width: 480px) {
   .container {
+    align-self: center;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    max-width: 600px;
   }
   .tab {
     width: auto;

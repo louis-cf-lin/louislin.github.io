@@ -26,7 +26,7 @@ const Resume: NextPage = () => {
   return (
     <Page>
       <Head>
-        <title>Résumé | .l</title>
+        <title>Résumé - .l</title>
         <meta name="description" content="Hi, I'm Louis and I write code." />
         <link rel="icon" href="/icon.ico" />
       </Head>

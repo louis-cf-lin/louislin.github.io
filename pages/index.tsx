@@ -125,7 +125,7 @@ const Home: NextPage = () => {
   return (
     <Page>
       <Head>
-        <title>Louis</title>
+        <title>Louis - .l</title>
         <meta name="description" content="Hi, I'm Louis and I write code." />
         <link rel="icon" href="/icon.ico" />
       </Head>
