@@ -1,8 +1,12 @@
+import { NextPage } from "next";
 import Head from "next/head";
 import Header from "../../components/Header";
 import Page from "../../components/Page";
+import ProjectsNav from "../../components/ProjectsNav";
 
-const CreateBase = () => {
+import classes from "../../styles/createbase.module.scss";
+
+const CreateBase: NextPage = () => {
   return (
     <Page>
       <Head>
@@ -11,6 +15,9 @@ const CreateBase = () => {
         <link rel="icon" href="/icon.ico" />
       </Head>
       <Header />
+      <main className={classes.main}>
+        <ProjectsNav active="/projects/createbase" />
+      </main>
     </Page>
   );
 };

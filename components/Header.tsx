@@ -8,33 +8,40 @@ const TABS = [
   {
     label: "résumé",
     href: "/resume",
+    title: "Résumé",
   },
   {
     label: "projects",
     href: "/projects",
+    title: "Projects",
   },
   {
     label: "studio",
     href: "/studio",
+    title: "Studio",
   },
 ];
 
-const PROJECTS = [
+export const PROJECTS = [
   {
     label: ".createbase()",
-    href: "/createbase",
+    href: "/projects/createbase",
+    title: "CreateBase",
   },
   {
     label: ".thesis()",
-    href: "/thesis",
+    href: "/projects/thesis",
+    title: "Thesis",
   },
   {
     label: ".iamsl_app()",
-    href: "/iamsl",
+    href: "/projects/iamsl-app",
+    title: "IAMSL app",
   },
   {
     label: ".kessler()",
-    href: "/kessler",
+    href: "/projects/kessler",
+    title: "Kessler",
   },
 ];
 
@@ -136,7 +143,7 @@ const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
                     className={`${classes.tab} ${
                       router.asPath === t.href ? classes.active : ""
                     } ${projectsIsOpen ? classes.hovered : ""}`}
-                    title={t.label}
+                    title={t.title}
                   >
                     {t.label}
                   </a>
@@ -150,7 +157,7 @@ const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
                     <div className={classes.projectsMenu}>
                       {PROJECTS.map((p) => (
                         <Link key={p.href} href={p.href}>
-                          <a title={p.label}>{p.label}</a>
+                          <a title={p.title}>{p.label}</a>
                         </Link>
                       ))}
                     </div>
@@ -163,7 +170,7 @@ const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
                   className={`${classes.tab} ${
                     router.asPath === t.href ? classes.active : ""
                   }`}
-                  title={t.label}
+                  title={t.title}
                 >
                   {t.label}
                 </a>

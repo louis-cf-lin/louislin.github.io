@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useParallax } from "react-scroll-parallax";
 import { useEffect, useState } from "react";
 import YouTube from "react-youtube";
-import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Typed from "../components/Typed";
 import classes from "../styles/index.module.scss";

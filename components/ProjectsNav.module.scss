@@ -1,0 +1,42 @@
+@import "/styles/variables";
+
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 0.5rem;
+  grid-column-gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.tab {
+  height: 2rem;
+  width: 100%;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  &.active {
+    opacity: 1;
+    background: $lighter;
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  .container {
+    display: flex;
+    align-items: center;
+  }
+  .tab {
+    width: auto;
+    padding: 0 0.5rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .tab {
+    margin-right: 1.5rem;
+    font-size: 14px;
+  }
+}

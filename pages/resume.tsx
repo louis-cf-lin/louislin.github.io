@@ -5,10 +5,11 @@ import Page from "../components/Page";
 import classes from "../styles/resume.module.scss";
 import Head from "next/head";
 import { CenterI, ZoomInI, ZoomOutI } from "../components/Icon";
+import { NextPage } from "next";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const Resume = () => {
+const Resume: NextPage = () => {
   const ref = useRef<HTMLElement>(null);
   const [height, setHeight] = useState(0);
   const [scale, setScale] = useState(1);
