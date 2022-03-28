@@ -9,6 +9,7 @@ import Header from "../components/Header";
 import Typed from "../components/Typed";
 import classes from "../styles/index.module.scss";
 import Link from "next/link";
+import { PlayI } from "../components/Icon";
 
 const PARAS_A = [
   {
@@ -70,8 +71,8 @@ const PARAS_A = [
 
 const PARAS_B = [
   {
-    rendered: <>I like rowing and automating random stuff</>,
-    typed: "I like rowing and automating random stuff",
+    rendered: <>I like rowing and enjoy being around friends</>,
+    typed: "I like rowing and enjoy being around friends",
   },
   {
     rendered: (
@@ -149,6 +150,7 @@ const Home: NextPage = () => {
                 typed: "# Hi, I'm Louis and I write code",
               }}
               isRendered={isRendered}
+              lineNumber={1}
               ready={h1Ready}
               callback={() => setH2AReady(true)}
               bounds={[125, 25, 1500]}
@@ -161,6 +163,7 @@ const Home: NextPage = () => {
                 typed: "## Mostly in Python & TypeScript",
               }}
               isRendered={isRendered}
+              lineNumber={2}
               ready={h2AReady}
               callback={() =>
                 setPAReady((state) => state.map((_, i) => i === 0))
@@ -173,6 +176,7 @@ const Home: NextPage = () => {
               <Typed
                 html={p}
                 ready={pAReady[i]}
+                lineNumber={3 + i}
                 isRendered={isRendered}
                 callback={() =>
                   i === PARAS_A.length - 1
@@ -193,56 +197,73 @@ const Home: NextPage = () => {
               }}
               ready={h2BReady}
               isRendered={isRendered}
+              lineNumber={3 + PARAS_A.length}
               callback={() =>
                 setPBReady((state) => state.map((_, i) => i === 0))
               }
               bounds={[75, 25, 1000]}
             />
           </h2>
-          {PARAS_B.map((p, i) => (
-            <p key={"paras_b" + i} className={classes.p}>
-              <Typed
-                html={p}
-                ready={pBReady[i]}
-                isRendered={isRendered}
-                callback={() =>
-                  i === PARAS_B.length - 1
-                    ? setYoutubeReady(true)
-                    : setPBReady((state) =>
-                        state.map((_s, _i) => (_i === i + 1 ? true : _s))
-                      )
-                }
-                bounds={[20, 40, 250]}
-              />
-            </p>
-          ))}
           <div
-            className={`${classes.youtubeContainer} ${
-              youtubeReady ? classes.show : ""
+            className={`${classes.partB} ${
+              isRendered ? classes.partBRendered : ""
             }`}
           >
-            {showPreview ? (
-              <div
-                className={classes.youtubePreview}
-                onClick={() => setShowPreview(false)}
-              >
-                <Image
-                  src="/home-youtube.jpg"
-                  layout="fill"
-                  alt="Snow Motion | Queenstown NZ"
+            <div className={classes.partBText}>
+              {PARAS_B.map((p, i) => (
+                <p key={"paras_b" + i} className={classes.p}>
+                  <Typed
+                    html={p}
+                    ready={pBReady[i]}
+                    isRendered={isRendered}
+                    lineNumber={4 + PARAS_A.length + i}
+                    callback={() =>
+                      i === PARAS_B.length - 1
+                        ? setYoutubeReady(true)
+                        : setPBReady((state) =>
+                            state.map((_s, _i) => (_i === i + 1 ? true : _s))
+                          )
+                    }
+                    bounds={[20, 40, 250]}
+                  />
+                </p>
+              ))}
+            </div>
+            <div
+              className={`${classes.youtubeContainer} ${
+                youtubeReady ? classes.show : ""
+              }`}
+              style={{ marginLeft: isRendered ? 0 : "5vw" }}
+            >
+              {showPreview ? (
+                <div
+                  className={classes.youtubePreview}
+                  onClick={() => setShowPreview(false)}
+                >
+                  <Image
+                    src="/home-youtube.jpg"
+                    layout="fill"
+                    alt="Snow Motion | Queenstown NZ"
+                  />
+                  {isRendered ? (
+                    <button>
+                      <PlayI height={36} width={36} color="white" />
+                    </button>
+                  ) : (
+                    <p>[Click to play]</p>
+                  )}
+                </div>
+              ) : (
+                <YouTube
+                  videoId="O-5r8IXsRns"
+                  className={classes.youtube}
+                  containerClassName={classes.youtubeWrapper}
+                  title="Snow Motion | Queenstown NZ"
+                  opts={{ playerVars: { rel: 0, autoplay: 1 } }}
+                  onEnd={() => setShowPreview(true)}
                 />
-                <p>[Click to play]</p>
-              </div>
-            ) : (
-              <YouTube
-                videoId="O-5r8IXsRns"
-                className={classes.youtube}
-                containerClassName={classes.youtubeWrapper}
-                title="Snow Motion | Queenstown NZ"
-                opts={{ playerVars: { rel: 0, autoplay: 1 } }}
-                onEnd={() => setShowPreview(true)}
-              />
-            )}
+              )}
+            </div>
           </div>
         </main>
         <Footer />

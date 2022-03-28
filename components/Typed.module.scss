@@ -3,6 +3,10 @@
 .span.rendered {
   font-family: $poppins !important;
   a {
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    font-weight: inherit;
     position: relative;
     &::after {
       content: "";
@@ -20,6 +24,10 @@
     }
   }
   i {
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    font-weight: inherit;
     font-style: italic;
   }
 }
@@ -35,8 +43,7 @@
   &.show {
     opacity: 1;
   }
-  &.last,
-  &.final {
+  &.last {
     position: relative;
     &::after {
       content: "";
@@ -56,6 +63,7 @@
   display: block;
   width: 100%;
   position: relative;
+  margin-left: 5vw;
 }
 
 .border {
@@ -63,6 +71,16 @@
   left: -2px;
   width: calc(100% + 4px);
   border: 2px solid $light;
+}
+
+.lineNumber {
+  position: absolute;
+  left: -2.5vw;
+  top: 0;
+  transform: translateX(-100%);
+  font-size: 12px;
+  color: rgb(177, 177, 177);
+  font-weight: 400;
 }
 
 @keyframes blink {
@@ -84,4 +102,10 @@
   100% {
     opacity: 1;
   }
+}
+
+@media only screen and (min-width: 480px) {
+  // .container {
+  //   margin-left: 1rem;
+  // }
 }

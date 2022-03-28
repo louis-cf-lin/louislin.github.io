@@ -6,6 +6,7 @@ interface Props {
   html: { rendered: JSX.Element; typed: string };
   ready: boolean;
   isRendered: boolean;
+  lineNumber: number;
   callback?: () => void;
   bounds?: [number, number, number];
 }
@@ -14,6 +15,7 @@ const Typed = ({
   html,
   ready,
   isRendered,
+  lineNumber,
   bounds = [25, 50, 1000],
   callback,
 }: Props): JSX.Element => {
@@ -73,8 +75,10 @@ const Typed = ({
           ref={i === len - 1 ? elRef : undefined}
           className={`${classes.span} ${
             i < len ? classes.show : classes.hide
-          } ${i === len - 1 && showCursor ? classes.last : ""} ${
-            i === charsRef.current.length - 1 && showCursor ? classes.final : ""
+          } ${
+            (i === len - 1 || i === charsRef.current.length - 1) && showCursor
+              ? classes.last
+              : ""
           }`}
         >
           {c}
@@ -89,6 +93,7 @@ const Typed = ({
           }}
         />
       )}
+      <span className={classes.lineNumber}>{lineNumber}</span>
     </span>
   );
 };
