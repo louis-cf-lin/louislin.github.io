@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import classes from "./Header.module.scss";
-import { MenuI, PlayI, CodeI } from "./Icon";
+import { MenuI, PlayI, CodeI, LouisI } from "./Icon";
 
 const TABS = [
   {
@@ -43,7 +43,7 @@ interface Props {
   compile?: () => void;
 }
 
-const Header = ({ compile, isRendered }: Props): JSX.Element => {
+const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
   const router = useRouter();
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
   const [projectsIsOpen, setProjectsIsOpen] = useState(false);
@@ -68,9 +68,15 @@ const Header = ({ compile, isRendered }: Props): JSX.Element => {
     >
       <div className={classes.headerWrapper}>
         <Link href="/">
-          <a className={classes.home} title="Home">
-            louis.md
-          </a>
+          {isRendered ? (
+            <a className={classes.homeIcon} title="Home">
+              <LouisI />
+            </a>
+          ) : (
+            <a className={classes.home} title="Home">
+              louis.md
+            </a>
+          )}
         </Link>
         <div className={classes.mobileOnly}>
           {compile && (

@@ -3,6 +3,7 @@ interface Props {
   width?: number;
   color?: string;
   strokeWidth?: number;
+  pathProps?: any;
   [x: string]: any;
 }
 
@@ -17,6 +18,7 @@ const GenericI = ({
   color = "black",
   strokeWidth = 1,
   fill = "none",
+  pathProps = {},
   ...props
 }: GenericProps): JSX.Element => {
   return (
@@ -44,6 +46,7 @@ const GenericI = ({
             strokeLinecap="round"
             fill={fill}
             style={{ transition: "all 0.1s ease-out" }}
+            {...pathProps}
           />
         ))}
       </svg>
@@ -80,6 +83,56 @@ export const CodeI = (props: Props): JSX.Element => {
     <GenericI
       {...props}
       paths={["M9.25 8.5L5.75 12L9.25 15.5M14.75 15.5L18.25 12L14.75 8.5"]}
+    />
+  );
+};
+
+export const ZoomInI = (props: Props): JSX.Element => {
+  return (
+    <GenericI
+      {...props}
+      paths={[
+        "M15.5 15.5L18 18M9.5 11.5H13.5M11.5 9.5V13.5M17 11.5V11.5C17 14.5376 14.5376 17 11.5 17V17C8.46243 17 6 14.5376 6 11.5V11.5C6 8.46243 8.46243 6 11.5 6V6C14.5376 6 17 8.46243 17 11.5Z",
+      ]}
+    />
+  );
+};
+
+export const ZoomOutI = (props: Props): JSX.Element => {
+  return (
+    <GenericI
+      {...props}
+      paths={[
+        "M15.5 15.5L18 18M9.5 11.5H13.5M17 11.5V11.5C17 14.5376 14.5376 17 11.5 17V17C8.46243 17 6 14.5376 6 11.5V11.5C6 8.46243 8.46243 6 11.5 6V6C14.5376 6 17 8.46243 17 11.5Z",
+      ]}
+    />
+  );
+};
+export const CenterI = (props: Props): JSX.Element => {
+  return (
+    <GenericI
+      {...props}
+      paths={[
+        "M9.5 6.5L6.5 6.5L6.5 9.5M6.5 14.5L6.5 17.5H9.5M14.5 17.5H17.5V14.5M17.5 9.5V6.5L14.5 6.5M12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12C14 13.1046 13.1046 14 12 14Z",
+      ]}
+    />
+  );
+};
+
+export const LouisI = (props: Props): JSX.Element => {
+  return (
+    <GenericI
+      {...props}
+      pathProps={{
+        fillRule: "evenodd",
+        clipRule: "evenodd",
+        strokeWidth: 0,
+        fill: "black",
+        stroke: "none",
+      }}
+      paths={[
+        "M20 4H4V20H20V4ZM11 9H13V15H11V17H14H17V15H15V8V7H14H11V9ZM7.5 14.5H6.5V15.5V16V17H7.5H8H9V16V15.5V14.5H8H7.5Z",
+      ]}
     />
   );
 };

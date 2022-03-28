@@ -35,6 +35,15 @@
   }
 }
 
+.homeIcon {
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: background-color 0.1s ease-out;
+  &:hover {
+    background: $lighter;
+  }
+}
+
 .mobileOnly {
   display: flex;
   align-items: center;
