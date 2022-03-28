@@ -1,12 +1,12 @@
 import Head from "next/head";
-import Header from "../components/Header";
-import Page from "../components/Page";
+import Header from "../../components/Header";
+import Page from "../../components/Page";
 
-const Projects = () => {
+const CreateBase = () => {
   return (
     <Page>
       <Head>
-        <title>Résumé | .l</title>
+        <title>CreateBase | .l</title>
         <meta name="description" content="Hi, I'm Louis and I write code." />
         <link rel="icon" href="/icon.ico" />
       </Head>
@@ -15,4 +15,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default CreateBase;
