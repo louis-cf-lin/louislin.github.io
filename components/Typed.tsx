@@ -22,6 +22,7 @@ const Typed = ({
   const elRef = useRef<HTMLSpanElement>(null);
   const charsRef = useRef(html.typed.split(""));
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const finishedTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [len, setLen] = useState(0);
   const [inView, setInView] = useState(false);
   const [showCursor, setShowCursor] = useState(false);
@@ -40,6 +41,7 @@ const Typed = ({
     return () => {
       window.removeEventListener("scroll", detect);
       clearTimeout(timeoutRef.current as NodeJS.Timeout);
+      clearTimeout(finishedTimeoutRef.current as NodeJS.Timeout);
     };
   }, []);
 
@@ -51,7 +53,7 @@ const Typed = ({
           setLen((l) => l + 1);
         }, Math.random() * (bounds[1] - bounds[0]) + bounds[0]);
       } else {
-        setTimeout(() => {
+        finishedTimeoutRef.current = setTimeout(() => {
           setShowCursor(false);
           callback?.();
         }, bounds[2]);

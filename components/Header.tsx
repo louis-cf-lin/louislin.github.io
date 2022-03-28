@@ -39,7 +39,7 @@ const PROJECTS = [
 ];
 
 interface Props {
-  isRendered: boolean;
+  isRendered?: boolean;
   compile?: () => void;
 }
 
@@ -51,7 +51,7 @@ const Header = ({ compile, isRendered }: Props): JSX.Element => {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY > 50) {
         setClearBg(false);
       } else {
         setClearBg(true);
@@ -89,15 +89,24 @@ const Header = ({ compile, isRendered }: Props): JSX.Element => {
               <div className={classes.menu}>
                 {TABS.map((t) => (
                   <Fragment key={t.href}>
-                    <Link href={t.href}>
-                      <a>{t.label}</a>
-                    </Link>
+                    <a
+                      onMouseDown={() => router.push(t.href)}
+                      className={router.asPath === t.href ? classes.active : ""}
+                    >
+                      {t.label}
+                    </a>
                     {t.href === "/projects" && (
                       <div className={classes.submenu}>
                         {PROJECTS.map((p) => (
-                          <Link key={p.href} href={p.href}>
+                          <a
+                            key={p.href}
+                            onMouseDown={() => router.push(t.href)}
+                            className={
+                              router.asPath === t.href ? classes.active : ""
+                            }
+                          >
                             {p.label}
-                          </Link>
+                          </a>
                         ))}
                       </div>
                     )}
@@ -157,21 +166,23 @@ const Header = ({ compile, isRendered }: Props): JSX.Element => {
           )}
         </div>
       </div>
-      <button
-        className={classes.compile}
-        title={isRendered ? "To code" : "Compile"}
-        onClick={compile}
-      >
-        {isRendered ? (
-          <>
-            <CodeI /> to code
-          </>
-        ) : (
-          <>
-            <PlayI /> compile
-          </>
-        )}
-      </button>
+      {compile && (
+        <button
+          className={classes.compile}
+          title={isRendered ? "To code" : "Compile"}
+          onClick={compile}
+        >
+          {isRendered ? (
+            <>
+              <CodeI /> to code
+            </>
+          ) : (
+            <>
+              <PlayI /> compile
+            </>
+          )}
+        </button>
+      )}
     </header>
   );
 };

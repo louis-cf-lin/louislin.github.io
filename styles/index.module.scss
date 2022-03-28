@@ -1,29 +1,13 @@
 @import "/styles/variables";
 
-.page {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 0 1.25rem;
-  padding-top: $mobile-header;
-  position: relative;
-  overflow: hidden;
-  .bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    width: 100vw;
-    height: 100%;
-    opacity: 0.5;
-  }
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100%;
+  opacity: 0.5;
 }
 
 .main {
@@ -136,10 +120,6 @@
 }
 
 @media only screen and (min-width: 480px) {
-  .wrapper {
-    padding: 0 2.5rem;
-    padding-top: $tablet-header;
-  }
   .main {
     padding: 20vh 0;
   }
@@ -155,10 +135,6 @@
 }
 
 @media only screen and (min-width: 1200px) {
-  .wrapper {
-    padding: 0 2rem;
-    padding-top: $desktop-header;
-  }
   .main {
     max-width: $max-width;
     align-self: center;
