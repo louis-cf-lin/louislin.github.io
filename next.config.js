@@ -5,7 +5,7 @@ const nextConfig = {
     loader: "akamai",
     path: "",
   },
-  assetPrefix: ".",
+  assetPrefix: "/out/",
 };
 
 module.exports = nextConfig;
