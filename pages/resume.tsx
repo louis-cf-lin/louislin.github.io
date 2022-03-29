@@ -15,6 +15,7 @@ const Resume: NextPage = () => {
   const ref = useRef<HTMLElement>(null);
   const [height, setHeight] = useState(0);
   const [scale, setScale] = useState(1);
+  const [renderedScale, setRenderedScale] = useState<number | null>(null);
 
   useEffect(() => {
     setHeight(ref.current?.offsetHeight || 0);
@@ -30,6 +31,8 @@ const Resume: NextPage = () => {
 
   const zoomOutHandler = () =>
     setScale((state) => (state <= 0.25 ? state : state - 0.25));
+
+  const isLoading = renderedScale !== scale;
 
   return (
     <Page>
@@ -58,12 +61,24 @@ const Resume: NextPage = () => {
         </div>
         <Document file={RESUME} className={classes.container}>
           <PDFPage
+            key={scale}
             pageNumber={1}
             className={classes.page}
             height={height}
             scale={scale}
+            onRenderSuccess={() => setRenderedScale(scale)}
           />
+          {isLoading && renderedScale ? (
+            <PDFPage
+              key={renderedScale}
+              pageNumber={1}
+              className={`${classes.page} ${classes.rendered}`}
+              height={height}
+              scale={renderedScale}
+            />
+          ) : null}
         </Document>
+        {isLoading && <div className={classes.loading}>Loading...</div>}
       </main>
     </Page>
   );

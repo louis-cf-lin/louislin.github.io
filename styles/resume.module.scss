@@ -15,7 +15,7 @@
   position: absolute;
   top: 0;
   right: 1rem;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   align-items: center;
   a {
@@ -43,6 +43,7 @@
   flex-direction: column;
   align-items: center;
   overflow: overlay;
+  position: relative;
   &::-webkit-scrollbar {
     display: block;
     width: 16px;
@@ -75,7 +76,27 @@
 
 .page {
   height: 100%;
-  margin: 0 auto;
+  position: absolute !important;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  &.rendered {
+    z-index: 1;
+  }
+}
+
+.loading {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateY(-100%);
+  background: rgba(black, 0.65);
+  color: white;
+  z-index: 2;
+  font-family: $roboto-mono;
+  font-size: 14px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
 }
 
 @media only screen and (min-width: 480px) {
