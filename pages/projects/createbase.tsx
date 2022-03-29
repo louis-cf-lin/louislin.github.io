@@ -102,6 +102,7 @@ const CreateBase: NextPage = () => {
               autoPlay
               loop
               muted
+              playsInline
               style={{ opacity: +isFlowDemo }}
               src="/flow-demo.mp4"
             />
@@ -109,6 +110,7 @@ const CreateBase: NextPage = () => {
               autoPlay
               loop
               muted
+              playsInline
               style={{ opacity: +!isFlowDemo }}
               src="/text-demo.mp4"
             />
