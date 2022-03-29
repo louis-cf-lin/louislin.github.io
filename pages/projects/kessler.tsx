@@ -40,7 +40,9 @@ const Kessler = () => {
             >
               <input type="password" ref={ref} onChange={() => setError("")} />
               <LockI height={26} width={26} className={classes.lock} />
-              <EnterI height={26} width={26} className={classes.enter} />
+              <button type="submit" className={classes.submit} title="Submit">
+                <EnterI height={26} width={26} className={classes.enter} />
+              </button>
             </div>
             <div className={classes.errorMessage}>{error}</div>
             <p>
