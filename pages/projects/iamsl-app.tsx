@@ -20,7 +20,7 @@ const IAMSL = () => {
       <main className={classes.main}>
         <ProjectsNav active="iamsl-app" />
         <div className={`${classes.img} ${classes.ipad}`}>
-          <Image src="/iamsl-ipad.png" layout="fill" alt="IAMSL app render" />
+          <Image src="/iamsl-ipad.jpg" layout="fill" alt="IAMSL app render" />
         </div>
         <Parallax translateY={["20px", "-100px"]}>
           <h2 className={`${classes.h2} ${classes.t1}`}>

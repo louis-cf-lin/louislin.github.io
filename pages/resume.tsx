@@ -9,6 +9,8 @@ import { NextPage } from "next";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
+const RESUME = "/louis-resume-portfolio.pdf";
+
 const Resume: NextPage = () => {
   const ref = useRef<HTMLElement>(null);
   const [height, setHeight] = useState(0);
@@ -48,13 +50,13 @@ const Resume: NextPage = () => {
           <button onClick={centerHandler} title="Center">
             <CenterI height={32} width={32} />
           </button>
-          <a href="/louis-resume.pdf" download>
+          <a href={RESUME} download>
             <button title="Download">
               <DownloadI height={32} width={32} />
             </button>
           </a>
         </div>
-        <Document file="/louis-resume.pdf" className={classes.container}>
+        <Document file={RESUME} className={classes.container}>
           <PDFPage
             pageNumber={1}
             className={classes.page}
