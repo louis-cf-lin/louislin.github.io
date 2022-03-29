@@ -2,6 +2,134 @@
 
 .main {
   width: 100%;
+  height: calc(100vh - 2 * $mobile-header);
   display: flex;
   flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  * {
+    font-family: $poppins;
+  }
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .inputWrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    input {
+      width: 100%;
+      padding: 0.5rem 0.5rem 0.5rem 2.25rem;
+      font-size: 15px;
+      border-radius: 8px;
+      background: $lighter;
+      font-weight: 500;
+      border: 2px solid transparent;
+      transition: padding 0.2s ease-out, background-color 0.1s ease-out,
+        border 0.1s ease-out;
+      &:focus {
+        background: white;
+        border: 2px solid $blue;
+        padding-left: 0.75rem;
+        & ~ .lock {
+          left: 0;
+          transform: translateY(-50%) translateX(-100%);
+        }
+        & ~ .enter {
+          right: 0.5rem;
+          transform: translateY(-50%);
+        }
+      }
+    }
+    .lock {
+      position: absolute;
+      top: 50%;
+      left: 0.5rem;
+      transform: translateY(-50%);
+      transition: left 0.2s ease-out, transform 0.2s ease-out;
+    }
+    .enter {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%) translateX(100%);
+      transition: right 0.2s ease-out, transform 0.2s ease-out;
+      path {
+        stroke: rgb(192, 192, 192);
+      }
+    }
+    &.error {
+      input {
+        &:focus {
+          background: white;
+          border-color: red;
+        }
+      }
+      .enter path {
+        stroke: red;
+      }
+    }
+  }
+  .errorMessage {
+    margin-top: 0.5rem;
+    height: 1em;
+    font-size: 11px;
+    font-family: $roboto-mono;
+    color: red;
+  }
+  p {
+    margin: 2rem 0 1rem 0;
+    font-size: 14px;
+  }
+  a {
+    font-size: inherit;
+    position: relative;
+    &:hover {
+      color: $blue;
+      &::after {
+        background: $blue;
+      }
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 1px;
+      width: calc(100% - 0.8em);
+      background: black;
+    }
+  }
+  span {
+    font-size: 12px;
+    font-family: $roboto-mono;
+    color: rgb(197, 197, 197);
+    line-height: 1.75em;
+    margin-bottom: 3rem;
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  .main {
+    height: calc(100vh - 2 * $tablet-header);
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .main {
+    height: calc(100vh - 2 * $desktop-header);
+  }
 }
