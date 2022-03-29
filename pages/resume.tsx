@@ -23,6 +23,12 @@ const Resume: NextPage = () => {
     setScale(1);
   };
 
+  const zoomInHandler = () =>
+    setScale((state) => (state >= 5 ? state : state + 0.25));
+
+  const zoomOutHandler = () =>
+    setScale((state) => (state <= 0.25 ? state : state - 0.25));
+
   return (
     <Page>
       <Head>
@@ -33,16 +39,10 @@ const Resume: NextPage = () => {
       <Header />
       <main ref={ref} className={classes.main}>
         <div className={classes.controls}>
-          <button
-            onClick={() => setScale((state) => state + 0.25)}
-            title="Zoom in"
-          >
+          <button onClick={zoomInHandler} title="Zoom in">
             <ZoomInI height={32} width={32} />
           </button>
-          <button
-            onClick={() => setScale((state) => state - 0.25)}
-            title="Zoom out"
-          >
+          <button onClick={zoomOutHandler} title="Zoom out">
             <ZoomOutI height={32} width={32} />
           </button>
           <button onClick={centerHandler} title="Center">
