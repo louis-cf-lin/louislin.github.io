@@ -39,7 +39,7 @@
 }
 
 .t2 {
-  font-size: 3rem;
+  font-size: 13vw;
   line-height: 1em;
   color: $light;
   margin-top: -1.5rem;
@@ -67,7 +67,12 @@
 .collage {
   margin-top: 6rem;
   margin-bottom: 1rem;
-  padding-bottom: 75%;
+  padding: 0;
+  overflow: hidden;
+  .collageInner {
+    margin: 0;
+    padding-bottom: 75%;
+  }
 }
 
 .t4 {
@@ -81,7 +86,64 @@
 }
 
 @media only screen and (min-width: 480px) {
+  .main {
+    align-self: center;
+    max-width: 600px;
+    margin-bottom: 4rem;
+  }
+
+  .h2 {
+    font-size: 2rem;
+  }
+
+  .ipad {
+    margin-top: 2rem;
+  }
+
+  .t1 {
+    font-size: 3rem;
+    margin-bottom: 8rem;
+  }
+
+  .icon {
+    max-height: 150px;
+    max-width: 150px;
+    margin: 0 1.5rem;
+  }
+
+  .t2 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    line-height: 1.25em;
+  }
+
+  .corner {
+    margin-top: 6rem;
+  }
+
+  .t3 {
+    margin-top: -3.75rem;
+    margin-bottom: 4rem;
+  }
+
+  .collage {
+    margin-top: 8rem;
+  }
+
+  .t4 {
+    margin-top: 1rem;
+    margin-bottom: 10rem;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
+  .h2 {
+    font-size: 2.5rem;
+  }
+  .t2 {
+    font-size: 5rem;
+  }
+  .t3 {
+    margin-top: -4rem;
+  }
 }

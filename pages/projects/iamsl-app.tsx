@@ -47,15 +47,19 @@ const IAMSL = () => {
             Generate PDF&apos;s with dynamic values
           </h2>
         </Parallax>
-        <Parallax scale={[1.25, 0.8]}>
-          <div className={`${classes.img} ${classes.collage}`}>
-            <Image
-              src="/iamsl-collage.png"
-              layout="fill"
-              alt="IAMSL app showcase"
-            />
-          </div>
-        </Parallax>
+        <div className={`${classes.img} ${classes.collage}`}>
+          <Parallax scale={[1.25, 0.8]}>
+            <div
+              className={`${classes.img} ${classes.collage} ${classes.collageInner}`}
+            >
+              <Image
+                src="/iamsl-collage.png"
+                layout="fill"
+                alt="IAMSL app showcase"
+              />
+            </div>
+          </Parallax>
+        </div>
         <h2 className={`${classes.h2} ${classes.t4}`}>
           Includes <b>native filesystem</b> read-write
         </h2>
