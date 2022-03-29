@@ -1,0 +1,15 @@
+@import "/styles/variables";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 26%;
+  box-shadow: 0 4px 1rem -2px;
+}

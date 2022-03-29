@@ -43,7 +43,6 @@ const Thesis: NextPage = () => {
             </div>
           </div>
         </div>
-
         <div className={classes.abstract}>
           <span className={classes.label}>Abstract</span>
           <p className={classes.p}>

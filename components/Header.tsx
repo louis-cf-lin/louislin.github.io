@@ -113,9 +113,9 @@ const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
                         {PROJECTS.map((p) => (
                           <a
                             key={p.href}
-                            onMouseDown={() => router.push(t.href)}
+                            onMouseDown={() => router.push(p.href)}
                             className={
-                              router.asPath === t.href ? classes.active : ""
+                              router.asPath === p.href ? classes.active : ""
                             }
                           >
                             {p.label}

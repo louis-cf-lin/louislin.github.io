@@ -15,12 +15,15 @@ const PARAS_A = [
   {
     rendered: (
       <>
-        I have a Masters in Computer Science and a Bachelor of Engineering
-        Honours
+        I have a{" "}
+        <Link href="/projects/thesis">
+          <a title="Thesis">Masters</a>
+        </Link>{" "}
+        in Computer Science and a Bachelor of Engineering Honours
       </>
     ),
     typed:
-      "I have a [Masters](/academia) in Computer Science and a Bachelor of Engineering Honours",
+      "I have a [Masters](/projects/thesis) in Computer Science and a Bachelor of Engineering Honours",
   },
   {
     rendered: (
@@ -49,12 +52,13 @@ const PARAS_A = [
     rendered: (
       <>
         <span className={classes.bulletPoint} />
+        The{" "}
         <Link href="/projects/iamsl-app">
           <a title="IAMSL app">IAMSL app</a>
         </Link>
       </>
     ),
-    typed: "- [IAMSL app](/projects/iamsl)",
+    typed: "- The [IAMSL app](/projects/iamsl-app)",
   },
   {
     rendered: (
