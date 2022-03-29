@@ -24,11 +24,11 @@ jobs:
 
     - run: npm ci
     - run: npm run build
-    env:
-      NEXT_PUBLIC_BASE_PATH: /louis-cf-lin.github.io
+      env:
+        NEXT_PUBLIC_BASE_PATH: /louis-cf-lin.github.io
     - run: npm run export
-    env:
-      NEXT_PUBLIC_BASE_PATH: /louis-cf-lin.github.io
+      env:
+        NEXT_PUBLIC_BASE_PATH: /louis-cf-lin.github.io
     - run: touch ./out/.nojekyll
 
     - name: Deploy 🚀
