@@ -1,9 +1,10 @@
 @import "/styles/variables";
 
 .container {
+  z-index: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .wrapper {
@@ -12,4 +13,9 @@
   justify-content: center;
   border-radius: 26%;
   box-shadow: 0 4px 1rem -2px;
+  transition: box-shadow 0.1s ease-out, transform 0.1s ease-out;
+  &:hover {
+    transform: translateY(2px);
+    box-shadow: none;
+  }
 }
