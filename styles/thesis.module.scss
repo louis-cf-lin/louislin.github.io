@@ -1,4 +1,158 @@
 @import "/styles/variables";
 
+$grey: #929292;
+
 .main {
+  margin-bottom: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.p {
+  font-size: 12px;
+  font-family: $poppins;
+  line-height: 1.75em;
+}
+
+.label {
+  font-family: $roboto-mono;
+  color: $grey;
+  font-size: 10px;
+}
+
+.h1 {
+  font-size: 1.5rem;
+  font-family: $poppins;
+  margin: 1rem 0;
+}
+
+.details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cta {
+  cursor: pointer;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  padding: 0 1rem;
+  background: $blue;
+  color: white;
+  font-size: 12px;
+  border-radius: 6px;
+  box-shadow: 0 8px 8px 0 rgba($blue, 0.25);
+  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 12px -4px rgba($blue, 0.25);
+  }
+}
+
+.meta {
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  span {
+    margin: 0.25rem 0;
+    font-size: 12px;
+  }
+}
+
+.authorContainer {
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: row;
+  .authorWrapper {
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.abstract {
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  span {
+    margin: 0.5rem 0;
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  .main {
+    max-width: 800px;
+    align-self: center;
+    margin-bottom: 4rem;
+  }
+  .p {
+    font-size: 13px;
+  }
+  .label {
+    font-size: 11px;
+  }
+  .h1 {
+    font-size: 2rem;
+  }
+  .details {
+    display: grid;
+    grid-template-areas: "meta cta" "authors cta";
+    grid-template-columns: 2fr auto;
+  }
+  .cta {
+    font-size: 13px;
+    grid-area: cta;
+    width: auto;
+    padding: 0 1.5rem;
+  }
+  .meta {
+    grid-area: meta;
+    span {
+      font-size: 13px;
+    }
+  }
+  .authorContainer {
+    grid-area: authors;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .main {
+    max-width: $max-width;
+  }
+  .p {
+    font-size: 14px;
+  }
+  .label {
+    font-size: 12px;
+    margin: 0.5rem 0;
+  }
+  .h1 {
+    font-size: 3rem;
+  }
+  .cta {
+    font-size: 14px;
+    height: 3rem;
+    padding: 0 1.5rem;
+    border-radius: 8px;
+  }
+  .meta {
+    margin: 0.75rem 0;
+    span {
+      font-size: 14px;
+    }
+  }
+  .authorContainer {
+    margin: 0.75rem 0;
+    .authorWrapper {
+      margin-right: 3rem;
+    }
+  }
+  .abstract {
+    margin: 1rem 0;
+  }
 }
