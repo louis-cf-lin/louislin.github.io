@@ -27,8 +27,9 @@
   }
   .launch {
     opacity: 0;
+    transition: opacity 0.1s ease-out;
     path {
-      stroke: grey;
+      stroke: $blue;
     }
   }
   p {

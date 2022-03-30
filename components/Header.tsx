@@ -6,14 +6,14 @@ import { MenuI, PlayI, CodeI, LouisI } from "./Icon";
 
 const TABS = [
   {
-    label: "résumé",
-    href: "/resume",
-    title: "Résumé",
-  },
-  {
     label: "projects",
     href: "/projects",
     title: "Projects",
+  },
+  {
+    label: "résumé",
+    href: "/resume",
+    title: "Résumé",
   },
   {
     label: "studio",

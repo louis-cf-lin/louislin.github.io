@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import Header from "../../components/Header";
+import { LaunchI } from "../../components/Icon";
 import Page from "../../components/Page";
 import ProjectsNav from "../../components/ProjectsNav";
 
@@ -31,16 +32,26 @@ const Thesis: NextPage = () => {
           <div className={classes.meta}>
             <span className={classes.label}>March 2022</span>
             <span className={classes.label}>The University of Auckland</span>
+            <span className={classes.label}>MSc in Computer Science</span>
           </div>
           <div className={classes.authorContainer}>
             <div className={classes.authorWrapper}>
               <span className={classes.label}>Author</span>
               <p className={classes.p}>Louis Lin</p>
             </div>
-            <div className={classes.authorWrapper}>
+            <a
+              href="http://www.matthewegbert.com/"
+              className={classes.authorWrapper}
+              title="matthewegbert.com"
+              target="_blank"
+              rel="noreferrer"
+            >
               <span className={classes.label}>Supervisor</span>
-              <p className={classes.p}>Dr Matthew Egbert</p>
-            </div>
+              <p className={classes.p}>
+                Dr Matthew Egbert{" "}
+                <LaunchI className={classes.matthew} width={20} height={20} />
+              </p>
+            </a>
           </div>
         </div>
         <div className={classes.abstract}>
