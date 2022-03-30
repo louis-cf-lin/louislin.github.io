@@ -36,12 +36,47 @@
 .gallery {
   margin: 2rem 0;
   display: flex;
-  // flex-direction: column;
   flex-wrap: wrap;
 }
 
 @media only screen and (min-width: 480px) {
+  .main {
+    align-self: center;
+    max-width: 600px;
+  }
+  .banner {
+    height: 30vh;
+    a {
+      h1 {
+        font-size: 3rem;
+      }
+      svg {
+        height: 2rem;
+        width: 2rem;
+      }
+    }
+  }
+  .gallery {
+    margin-bottom: 20vh;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
+  .main {
+    align-self: center;
+    max-width: $max-width;
+  }
+  .banner {
+    height: 40vh;
+    align-self: center;
+    max-width: $max-width;
+    a {
+      h1 {
+        font-size: 4rem;
+      }
+    }
+  }
+  .gallery {
+    max-width: 1400px;
+  }
 }

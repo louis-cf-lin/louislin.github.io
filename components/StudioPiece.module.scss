@@ -4,7 +4,7 @@
   margin: 1rem 2vw;
   width: 100%;
   min-width: 300px;
-  max-width: 600px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   .img {
@@ -15,22 +15,52 @@
     position: relative;
     & > *:nth-child(2) {
       opacity: 0 !important;
-      transition: opacity 0.1s ease-out;
-    }
-    &:hover {
-      & > *:nth-child(2) {
-        opacity: 1 !important;
-      }
+      transition: opacity 0.6s ease-out 0.2s;
     }
   }
   h2 {
+    display: flex;
+    justify-content: space-between;
     font-size: 16px;
     font-weight: 600;
     font-family: $poppins;
+  }
+  .launch {
+    opacity: 0;
+    path {
+      stroke: grey;
+    }
   }
   p {
     font-size: 11px;
     color: #b4b4b4;
     font-weight: 500;
+  }
+  &:hover {
+    .img > *:nth-child(2) {
+      opacity: 1 !important;
+      transition: opacity 0.1s ease-out;
+    }
+    .launch {
+      opacity: 1;
+    }
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  .piece {
+    margin: 1.5rem 2vw 1.5rem 0;
+    h2 {
+      font-size: 18px;
+    }
+    p {
+      font-size: 12px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .piece {
+    margin: 2rem 3rem 2rem 0;
   }
 }

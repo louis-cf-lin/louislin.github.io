@@ -1,4 +1,5 @@
 import { ParallaxBanner } from "react-scroll-parallax";
+import { LaunchI } from "./Icon";
 
 import classes from "./StudioPiece.module.scss";
 
@@ -15,10 +16,14 @@ interface Props {
 
 const StudioPiece = ({ piece }: Props): JSX.Element => {
   return (
-    <div className={classes.piece}>
+    <a
+      href={`https://www.youtube.com/watch?v=${piece.id}`}
+      className={classes.piece}
+      title={piece.title}
+      target="_blank"
+      rel="noreferrer"
+    >
       <div className={classes.img}>
-        {/* <Image src={`/${v.img}.jpg`} layout="fill" alt={v.title} />
-    <Image src={`/${v.img}-text.jpg`} layout="fill" alt={v.title} /> */}
         <ParallaxBanner
           layers={[{ image: `/${piece.img}.jpg`, speed: -5 }]}
           style={{
@@ -36,9 +41,12 @@ const StudioPiece = ({ piece }: Props): JSX.Element => {
           }}
         />
       </div>
-      <h2>{piece.title}</h2>
+      <h2>
+        {piece.title}
+        <LaunchI className={classes.launch} />
+      </h2>
       <p>{piece.date}</p>
-    </div>
+    </a>
   );
 };
 
