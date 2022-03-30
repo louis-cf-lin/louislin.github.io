@@ -43,6 +43,28 @@ const Resume: NextPage = () => {
       </Head>
       <Header />
       <main ref={ref} className={classes.main}>
+        <Document file={RESUME} className={classes.container} loading="">
+          <PDFPage
+            key={scale}
+            pageNumber={1}
+            className={classes.page}
+            height={height}
+            scale={scale}
+            loading=""
+            onRenderSuccess={() => setRenderedScale(scale)}
+          />
+          {isLoading && renderedScale ? (
+            <PDFPage
+              key={renderedScale}
+              pageNumber={1}
+              className={`${classes.page} ${classes.rendered}`}
+              height={height}
+              loading=""
+              scale={renderedScale}
+            />
+          ) : null}
+        </Document>
+        {isLoading && <div className={classes.loading}>Loading...</div>}
         <div className={classes.controls}>
           <button onClick={zoomInHandler} title="Zoom in">
             <ZoomInI height={32} width={32} />
@@ -59,26 +81,6 @@ const Resume: NextPage = () => {
             </button>
           </a>
         </div>
-        <Document file={RESUME} className={classes.container}>
-          <PDFPage
-            key={scale}
-            pageNumber={1}
-            className={classes.page}
-            height={height}
-            scale={scale}
-            onRenderSuccess={() => setRenderedScale(scale)}
-          />
-          {isLoading && renderedScale ? (
-            <PDFPage
-              key={renderedScale}
-              pageNumber={1}
-              className={`${classes.page} ${classes.rendered}`}
-              height={height}
-              scale={renderedScale}
-            />
-          ) : null}
-        </Document>
-        {isLoading && <div className={classes.loading}>Loading...</div>}
       </main>
     </Page>
   );

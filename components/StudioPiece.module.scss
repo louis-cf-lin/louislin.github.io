@@ -1,0 +1,36 @@
+@import "/styles/variables";
+
+.piece {
+  margin: 1rem 2vw;
+  width: 100%;
+  min-width: 300px;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  .img {
+    margin: 0.5rem 0;
+    width: 100%;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    position: relative;
+    & > *:nth-child(2) {
+      opacity: 0 !important;
+      transition: opacity 0.1s ease-out;
+    }
+    &:hover {
+      & > *:nth-child(2) {
+        opacity: 1 !important;
+      }
+    }
+  }
+  h2 {
+    font-size: 16px;
+    font-weight: 600;
+    font-family: $poppins;
+  }
+  p {
+    font-size: 11px;
+    color: #b4b4b4;
+    font-weight: 500;
+  }
+}

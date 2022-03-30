@@ -11,31 +11,6 @@
   position: relative;
 }
 
-.controls {
-  position: absolute;
-  top: 0;
-  right: 1rem;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  button {
-    margin-left: 0.25rem;
-    border-radius: 8px;
-    background: white;
-    opacity: 0.75;
-    transition: opacity 0.1s ease-out, background-color 0.1s ease-out;
-    &:hover {
-      opacity: 1;
-      background: $lighter;
-    }
-  }
-}
-
 .container {
   height: 100%;
   width: 100%;
@@ -87,21 +62,49 @@
 
 .loading {
   position: absolute;
-  bottom: 1rem;
+  bottom: 1vh;
   left: 50%;
-  transform: translateY(-100%);
-  background: rgba(black, 0.65);
+  transform: translateX(-50%) translateY(-100%);
+  background: rgba(black, 0.5);
   color: white;
-  z-index: 2;
+  z-index: 1;
   font-family: $roboto-mono;
-  font-size: 14px;
-  padding: 0.25rem 0.75rem;
-  border-radius: 4px;
+  font-size: 12px;
+  padding: 0.25em 0.75em;
+  border-radius: 0.2em;
+}
+
+.controls {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  button {
+    margin-left: 0.25rem;
+    border-radius: 8px;
+    background: white;
+    opacity: 0.75;
+    transition: opacity 0.1s ease-out, background-color 0.1s ease-out;
+    &:hover {
+      opacity: 1;
+      background: $lighter;
+    }
+  }
 }
 
 @media only screen and (min-width: 480px) {
   .main {
     height: calc(100vh - 2 * $tablet-header);
+  }
+  .loading {
+    font-size: 13px;
   }
 }
 

@@ -158,6 +158,18 @@ export const EnterI = (props: Props): JSX.Element => {
   );
 };
 
+export const LaunchI = (props: Props): JSX.Element => {
+  return (
+    <GenericI
+      {...props}
+      pathProps={{
+        strokeLinejoin: "round",
+      }}
+      paths={["M7.75 16.25L16.25 7.75M16.25 7.75V12.25M16.25 7.75H11.75"]}
+    />
+  );
+};
+
 export const LouisI = (props: Props): JSX.Element => {
   return (
     <GenericI
