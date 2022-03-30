@@ -59,8 +59,8 @@ const Resume: NextPage = () => {
               pageNumber={1}
               className={`${classes.page} ${classes.rendered}`}
               height={height}
-              loading=""
               scale={renderedScale}
+              loading=""
             />
           ) : null}
         </Document>
