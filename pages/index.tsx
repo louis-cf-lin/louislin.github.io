@@ -129,8 +129,16 @@ const Home: NextPage = () => {
   return (
     <Page>
       <Head>
-        <title>Louis - .l</title>
+        <title>Louis Lin</title>
         <meta name="description" content="Hi, I'm Louis and I write code." />
+        <meta property="og:title" content="Louis Lin" />
+        <meta property="og:url" content="https://louis-cf-lin.github.io/" />
+        <meta property="og:type" content="Profile" />
+        <meta
+          property="og:description"
+          content="Hi, I'm Louis and I write code."
+        />
+        <meta property="og:image" content="/og.svg" />
         <link rel="icon" href="/icon.ico" />
       </Head>
       <Header isRendered={isRendered} compile={compile} />
