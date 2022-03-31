@@ -138,9 +138,9 @@ const Home: NextPage = () => {
           property="og:description"
           content="Hi, I'm Louis and I write code."
         />
-        <meta property="og:image" content="/meta.svg" />
+        <meta property="og:image" content="/meta.jpg" />
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:image" content="/meta.svg" />
+        <meta property="twitter:image" content="/meta.jpg" />
         <meta property="twitter:site" content="@louii_l" />
         <link rel="icon" href="/icon.ico" />
       </Head>
