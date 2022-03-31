@@ -76,9 +76,9 @@ export const NODES: Node<ITechNodeData | ILabelNodeData>[] = [
     position: { x: 1050, y: 0 },
   },
   {
-    id: "mixpanel",
+    id: "mp",
     type: "tech",
-    data: { id: "mixpanel" },
+    data: { id: "mp" },
     position: { x: 750, y: 150 },
   },
   {
@@ -132,8 +132,8 @@ export const EDGES = [
   edge("redux", "react", `${Position.Left}-b`, `${Position.Right}-b`),
   edge("redux", "next", `${Position.Right}-a`, `${Position.Left}-a`),
   edge("next", "redux", `${Position.Left}-b`, `${Position.Right}-b`),
-  edge("react", "mixpanel", Position.Bottom, Position.Left),
-  edge("mixpanel", "mongodb", Position.Right, Position.Left),
+  edge("react", "mp", Position.Bottom, Position.Left),
+  edge("mp", "mongodb", Position.Right, Position.Left),
   edge("mongodb", "next", `${Position.Top}-a`, `${Position.Bottom}-a`),
   edge("next", "mongodb", `${Position.Bottom}-b`, `${Position.Top}-b`),
   edge("next", "aws", Position.Right, Position.Left),
