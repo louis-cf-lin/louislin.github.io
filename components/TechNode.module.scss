@@ -1,0 +1,22 @@
+@import "/styles/variables";
+
+.node {
+  height: 6rem;
+  width: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 16px 0 rgba(black, 0.05);
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.imgContainer {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}

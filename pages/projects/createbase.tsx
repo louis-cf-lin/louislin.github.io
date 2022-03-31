@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
@@ -6,6 +7,7 @@ import YouTube from "react-youtube";
 import Header from "../../components/Header";
 import Page from "../../components/Page";
 import ProjectsNav from "../../components/ProjectsNav";
+// import StackFlow from "../../components/StackFlow";
 
 import classes from "../../styles/createbase.module.scss";
 
@@ -15,6 +17,10 @@ const LINKS = [
     label: "Projects",
   },
 ];
+
+const StackFlow = dynamic(() => import("../../components/StackFlow"), {
+  ssr: false,
+});
 
 const CreateBase: NextPage = () => {
   const [isFlowDemo, setIsFlowDemo] = useState(true);
@@ -131,6 +137,9 @@ const CreateBase: NextPage = () => {
               Text code
             </button>
           </div>
+        </div>
+        <div className={classes.flow}>
+          <StackFlow />
         </div>
         <div className={classes.rbb}>
           <h2 className={classes.h2}>Winners of Red Bull Basement NZ 2020</h2>

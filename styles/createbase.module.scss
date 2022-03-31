@@ -122,6 +122,14 @@
   }
 }
 
+.flow {
+  align-self: center;
+  margin: 2rem 0;
+  height: 40vh;
+  width: 100%;
+  min-width: 80vw;
+}
+
 .rbb {
   margin: 2rem 0;
   width: 100%;
@@ -270,5 +278,8 @@
         align-self: flex-end;
       }
     }
+  }
+  .flow {
+    min-width: 100%;
   }
 }
