@@ -140,12 +140,12 @@ const Home: NextPage = () => {
         />
         <meta
           property="og:image"
-          content="https://github.com/louis-cf-lin/louis-cf-lin.github.io/blob/042816ffa78d9f3cb9ca26e1eed37689e00ed3c5/public/meta.jpg"
+          content="https://raw.githubusercontent.com/louis-cf-lin/louis-cf-lin.github.io/master/public/meta.jpg"
         />
         <meta property="twitter:card" content="summary_large_image" />
         <meta
           property="twitter:image"
-          content="https://github.com/louis-cf-lin/louis-cf-lin.github.io/blob/042816ffa78d9f3cb9ca26e1eed37689e00ed3c5/public/meta.jpg"
+          content="https://raw.githubusercontent.com/louis-cf-lin/louis-cf-lin.github.io/master/public/meta.jpg"
         />
         <meta property="twitter:site" content="@louii_l" />
         <link rel="icon" href="/icon.ico" />
