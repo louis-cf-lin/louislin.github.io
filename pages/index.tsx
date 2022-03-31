@@ -138,9 +138,15 @@ const Home: NextPage = () => {
           property="og:description"
           content="Hi, I'm Louis and I write code."
         />
-        <meta property="og:image" content="/meta.jpg" />
+        <meta
+          property="og:image"
+          content="https://github.com/louis-cf-lin/louis-cf-lin.github.io/blob/042816ffa78d9f3cb9ca26e1eed37689e00ed3c5/public/meta.jpg"
+        />
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:image" content="/meta.jpg" />
+        <meta
+          property="twitter:image"
+          content="https://github.com/louis-cf-lin/louis-cf-lin.github.io/blob/042816ffa78d9f3cb9ca26e1eed37689e00ed3c5/public/meta.jpg"
+        />
         <meta property="twitter:site" content="@louii_l" />
         <link rel="icon" href="/icon.ico" />
       </Head>
