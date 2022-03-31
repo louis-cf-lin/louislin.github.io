@@ -25,6 +25,10 @@ button {
   font-family: inherit;
 }
 
+.react-flow__attribution a {
+  font-size: 12px !important;
+}
+
 @supports (overflow: overlay) {
   body {
     max-height: 100vh;
