@@ -5,13 +5,21 @@ import Image from "next/image";
 import { useState } from "react";
 import YouTube from "react-youtube";
 import Header from "../../components/Header";
+import { LaunchI } from "../../components/Icon";
 import Page from "../../components/Page";
 import ProjectsNav from "../../components/ProjectsNav";
-// import StackFlow from "../../components/StackFlow";
 
 import classes from "../../styles/createbase.module.scss";
 
 const LINKS = [
+  {
+    href: "https://app.createbase.co.nz/",
+    label: "App",
+  },
+  {
+    href: "https://createbase.co.nz/",
+    label: "Website",
+  },
   {
     href: "https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured",
     label: "Projects",
@@ -60,19 +68,20 @@ const CreateBase: NextPage = () => {
             />
           </div>
           <div className={classes.intro}>
-            {/* <div className={classes.links}>
-            {LINKS.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                target="_blank"
-                rel="noreferrer"
-                title={l.label}
-              >
-                {l.label.toLowerCase()}
-              </a>
-            ))}
-          </div> */}
+            <div className={classes.links}>
+              {LINKS.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  title={l.label}
+                >
+                  {l.label.toLowerCase()}
+                  <LaunchI color="white" />
+                </a>
+              ))}
+            </div>
             <p className={classes.p}>
               CreateBase was founded by a group of uni friends in the summer of
               2019. We wanted to making tech education more engaging and

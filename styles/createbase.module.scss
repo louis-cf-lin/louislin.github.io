@@ -43,26 +43,41 @@
   overflow: hidden;
 }
 
-.collage {
-  position: relative;
-  width: 100%;
-  padding-bottom: 53%;
-  margin: 1rem 0;
-}
-
 .intro {
   margin: 1rem 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   .links {
+    height: 2rem;
+    width: 100%;
+    margin-bottom: 0.75rem;
     display: flex;
     align-items: center;
     a {
-      opacity: 0.5;
+      flex: 1 1 0;
+      height: 100%;
+      margin: 0 0.5rem;
+      border-radius: 4px;
       font-size: 12px;
+      background: rgba($blue, 0.1);
+      color: $blue;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      i {
+        display: none;
+      }
     }
   }
+}
+
+.collage {
+  position: relative;
+  width: 100%;
+  padding-bottom: 53%;
+  margin: 1rem 0;
 }
 
 .content {
@@ -178,6 +193,32 @@
   .banner {
     margin: 1.5rem 0;
   }
+  .intro {
+    margin: 1.5rem 0;
+    .links {
+      margin-bottom: 1rem;
+      height: 2.5rem;
+      a {
+        margin: 0 0.75rem;
+        font-size: 13px;
+        transition: background-color 0.1s ease-out, color 0.1s ease-out;
+        &:hover {
+          background: $blue;
+          color: white;
+          i {
+            opacity: 1;
+          }
+        }
+        i {
+          display: block;
+          position: absolute;
+          top: 2px;
+          right: 2px;
+          opacity: 0;
+        }
+      }
+    }
+  }
   .collage {
     margin: 1.5rem 0;
   }
@@ -242,7 +283,7 @@
   .intro {
     margin: 0;
     grid-area: intro;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
   .content {
     grid-area: content;
