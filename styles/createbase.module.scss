@@ -60,7 +60,7 @@
       margin: 0 0.5rem;
       border-radius: 4px;
       font-size: 12px;
-      background: rgba($blue, 0.1);
+      background: rgba($blue, 0.05);
       color: $blue;
       display: flex;
       align-items: center;
@@ -284,6 +284,11 @@
     margin: 0;
     grid-area: intro;
     justify-content: space-between;
+    .links {
+      a {
+        max-width: 130px;
+      }
+    }
   }
   .content {
     grid-area: content;
