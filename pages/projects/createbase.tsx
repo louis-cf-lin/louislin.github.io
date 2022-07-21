@@ -155,8 +155,8 @@ const CreateBase: NextPage = () => {
           <div className={classes.rbbContent}>
             <YouTube
               videoId="qd_qGnKcs8A"
-              containerClassName={classes.rbbVidContainer}
-              className={classes.rbbVid}
+              className={classes.rbbVidContainer}
+              iframeClassName={classes.rbbVid}
               title="Red Bull Basement 2020 NZ Winnder | CreateBase Aftemovie"
               opts={{ playerVars: { rel: 0 } }}
             />
