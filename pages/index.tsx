@@ -272,8 +272,8 @@ const Home: NextPage = () => {
             ) : (
               <YouTube
                 videoId="O-5r8IXsRns"
-                className={classes.youtube}
-                containerClassName={classes.youtubeWrapper}
+                className={classes.youtubeWrapper}
+                iframeClassName={classes.youtube}
                 title="Snow Motion | Queenstown NZ"
                 opts={{ playerVars: { rel: 0, autoplay: 1 } }}
                 onEnd={() => setShowPreview(true)}
