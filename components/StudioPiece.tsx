@@ -1,5 +1,5 @@
 import { ParallaxBanner } from "react-scroll-parallax";
-import { LaunchI } from "./Icon";
+import { LaunchIcon } from "./Icon";
 
 import classes from "./StudioPiece.module.scss";
 
@@ -43,7 +43,7 @@ const StudioPiece = ({ piece }: Props): JSX.Element => {
       </div>
       <h2>
         {piece.title}
-        <LaunchI className={classes.launch} />
+        <LaunchIcon className={classes.launch} />
       </h2>
       <p>{piece.date}</p>
     </a>

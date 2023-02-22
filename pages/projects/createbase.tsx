@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import YouTube from "react-youtube";
 import Header from "../../components/Header";
-import { LaunchI } from "../../components/Icon";
+import { LaunchIcon } from "../../components/Icon";
 import Page from "../../components/Page";
 import ProjectsNav from "../../components/ProjectsNav";
 
@@ -78,7 +78,7 @@ const CreateBase: NextPage = () => {
                   title={l.label}
                 >
                   {l.label.toLowerCase()}
-                  <LaunchI color="white" />
+                  <LaunchIcon color="white" />
                 </a>
               ))}
             </div>

@@ -8,7 +8,7 @@ import Header from "../components/Header";
 import Typed from "../components/Typed";
 import classes from "../styles/index.module.scss";
 import Link from "next/link";
-import { PlayI } from "../components/Icon";
+import { PlayIcon } from "../components/Icon";
 import Page from "../components/Page";
 
 const PARAS_A = [
@@ -263,7 +263,7 @@ const Home: NextPage = () => {
                 />
                 {isRendered ? (
                   <button>
-                    <PlayI height={36} width={36} color="white" />
+                    <PlayIcon height={36} width={36} color="white" />
                   </button>
                 ) : (
                   <p>[Click to play]</p>

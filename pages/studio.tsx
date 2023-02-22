@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { ParallaxBanner } from "react-scroll-parallax";
 import Header from "../components/Header";
-import { LaunchI } from "../components/Icon";
+import { LaunchIcon } from "../components/Icon";
 import Page from "../components/Page";
 import StudioPiece, { TPiece } from "../components/StudioPiece";
 
@@ -61,7 +61,7 @@ const Studio = () => {
             title="Louii Studios"
           >
             <h1>Louii Studios</h1>
-            <LaunchI />
+            <LaunchIcon />
           </a>
         </div>
         <div className={classes.gallery}>

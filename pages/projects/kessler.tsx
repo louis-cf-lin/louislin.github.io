@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { ChangeEvent, FormEventHandler, useRef, useState } from "react";
 import Header from "../../components/Header";
-import { EnterI, LockI } from "../../components/Icon";
+import { EnterIcon, LockIcon } from "../../components/Icon";
 import Page from "../../components/Page";
 import ProjectsNav from "../../components/ProjectsNav";
 
@@ -39,9 +39,9 @@ const Kessler = () => {
               }`}
             >
               <input type="password" ref={ref} onChange={() => setError("")} />
-              <LockI height={26} width={26} className={classes.lock} />
+              <LockIcon height={26} width={26} className={classes.lock} />
               <button type="submit" className={classes.submit} title="Submit">
-                <EnterI height={26} width={26} className={classes.enter} />
+                <EnterIcon height={26} width={26} className={classes.enter} />
               </button>
             </div>
             <div className={classes.errorMessage}>{error}</div>

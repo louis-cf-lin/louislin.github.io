@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import classes from "./Header.module.scss";
-import { MenuI, PlayI, CodeI, LouisI } from "./Icon";
+import { MenuIcon, PlayIcon, CodeIcon, LouisIcon } from "./Icon";
 
 const TABS = [
   {
@@ -77,7 +77,7 @@ const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
         <Link href="/">
           {isRendered ? (
             <a className={classes.homeIcon} title="Home">
-              <LouisI />
+              <LouisIcon />
             </a>
           ) : (
             <a className={classes.home} title="Home">
@@ -88,7 +88,7 @@ const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
         <div className={classes.mobileOnly}>
           {compile && (
             <button className={classes.play} onClick={compile}>
-              {isRendered ? <CodeI /> : <PlayI />}
+              {isRendered ? <CodeIcon /> : <PlayIcon />}
             </button>
           )}
           <div
@@ -96,7 +96,7 @@ const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
             onBlur={() => setMobileMenuIsOpen(false)}
           >
             <button className={classes.menuBtn} onClick={toggleMenu}>
-              <MenuI />
+              <MenuIcon />
             </button>
             {mobileMenuIsOpen && (
               <div className={classes.menu}>
@@ -189,11 +189,11 @@ const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
         >
           {isRendered ? (
             <>
-              <CodeI /> to code
+              <CodeIcon /> to code
             </>
           ) : (
             <>
-              <PlayI /> compile
+              <PlayIcon /> compile
             </>
           )}
         </button>

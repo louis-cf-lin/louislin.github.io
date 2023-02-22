@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import Header from "../../components/Header";
-import { LaunchI } from "../../components/Icon";
+import { LaunchIcon } from "../../components/Icon";
 import Page from "../../components/Page";
 import ProjectsNav from "../../components/ProjectsNav";
 
@@ -49,7 +49,11 @@ const Thesis: NextPage = () => {
               <span className={classes.label}>Supervisor</span>
               <p className={classes.p}>
                 Dr Matthew Egbert{" "}
-                <LaunchI className={classes.matthew} width={20} height={20} />
+                <LaunchIcon
+                  className={classes.matthew}
+                  width={20}
+                  height={20}
+                />
               </p>
             </a>
           </div>
