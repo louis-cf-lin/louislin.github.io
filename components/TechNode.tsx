@@ -19,7 +19,7 @@ const TechNode = ({ data }: Props): JSX.Element => {
       <Handles position={Position.Left} doubles={data.doubles?.left} />
       <div className={classes.node} draggable={false}>
         <div className={classes.imgContainer}>
-          <Image src={`/${data.id}.svg`} layout="fill" alt={data.id} />
+          <Image src={`/${data.id}.svg`} alt={data.id} fill sizes="100vw" />
         </div>
       </div>
     </>

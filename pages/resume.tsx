@@ -11,7 +11,6 @@ const Resume: NextPage = () => {
       <Head>
         <title>Résumé - .l</title>
         <meta name="description" content="Hi, I'm Louis and I write code." />
-        <link rel="icon" href="/icon.ico" />
       </Head>
       <Header />
       <main className={classes.main}>TODO</main>

@@ -76,13 +76,13 @@ const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
       <div className={classes.headerWrapper}>
         <Link href="/">
           {isRendered ? (
-            <a className={classes.homeIcon} title="Home">
+            <p className={classes.homeIcon} title="Home">
               <LouisIcon />
-            </a>
+            </p>
           ) : (
-            <a className={classes.home} title="Home">
+            <p className={classes.home} title="Home">
               louis.md
-            </a>
+            </p>
           )}
         </Link>
         <div className={classes.mobileOnly}>
@@ -138,17 +138,14 @@ const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
                 onMouseLeave={() => setProjectsIsOpen(false)}
                 key={t.href}
               >
-                <Link href={t.href}>
-                  <a
-                    className={`${classes.tab} ${
-                      router.asPath.startsWith("/projects")
-                        ? classes.active
-                        : ""
-                    } ${projectsIsOpen ? classes.hovered : ""}`}
-                    title={t.title}
-                  >
-                    {t.label}
-                  </a>
+                <Link
+                  href={t.href}
+                  className={`${classes.tab} ${
+                    router.asPath.startsWith("/projects") ? classes.active : ""
+                  } ${projectsIsOpen ? classes.hovered : ""}`}
+                  title={t.title}
+                >
+                  {t.label}
                 </Link>
                 {projectsIsOpen && (
                   <div
@@ -158,8 +155,8 @@ const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
                   >
                     <div className={classes.projectsMenu}>
                       {PROJECTS.map((p) => (
-                        <Link key={p.href} href={p.href}>
-                          <a title={p.title}>{p.label}</a>
+                        <Link key={p.href} href={p.href} title={p.title}>
+                          {p.label}
                         </Link>
                       ))}
                     </div>
@@ -167,15 +164,15 @@ const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
                 )}
               </div>
             ) : (
-              <Link key={t.href} href={t.href}>
-                <a
-                  className={`${classes.tab} ${
-                    router.asPath === t.href ? classes.active : ""
-                  }`}
-                  title={t.title}
-                >
-                  {t.label}
-                </a>
+              <Link
+                key={t.href}
+                href={t.href}
+                className={`${classes.tab} ${
+                  router.asPath === t.href ? classes.active : ""
+                }`}
+                title={t.title}
+              >
+                {t.label}
               </Link>
             )
           )}

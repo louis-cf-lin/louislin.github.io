@@ -14,13 +14,17 @@ const IAMSL = () => {
       <Head>
         <title>IAMSL App - .l</title>
         <meta name="description" content="Hi, I'm Louis and I write code." />
-        <link rel="icon" href="/icon.ico" />
       </Head>
       <Header />
       <main className={classes.main}>
         <ProjectsNav active="iamsl-app" />
         <div className={`${classes.img} ${classes.ipad}`}>
-          <Image src="/iamsl-ipad.jpg" layout="fill" alt="IAMSL app render" />
+          <Image
+            src="/iamsl-ipad.jpg"
+            alt="IAMSL app render"
+            fill
+            sizes="100vw"
+          />
         </div>
         <Parallax translateY={["20px", "-100px"]}>
           <h2 className={`${classes.h2} ${classes.t1}`}>
@@ -39,7 +43,12 @@ const IAMSL = () => {
           style={{ zIndex: 1 }}
         >
           <div className={`${classes.img} ${classes.corner}`}>
-            <Image src="/iamsl-corner.png" layout="fill" alt="IAMSL app PDF" />
+            <Image
+              src="/iamsl-corner.png"
+              alt="IAMSL app PDF"
+              fill
+              sizes="100vw"
+            />
           </div>
         </Parallax>
         <Parallax translateY={["-20px", "20px"]}>
@@ -54,8 +63,9 @@ const IAMSL = () => {
             >
               <Image
                 src="/iamsl-collage.png"
-                layout="fill"
                 alt="IAMSL app showcase"
+                fill
+                sizes="100vw"
               />
             </div>
           </Parallax>

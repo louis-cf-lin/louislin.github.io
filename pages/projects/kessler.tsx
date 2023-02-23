@@ -25,7 +25,6 @@ const Kessler = () => {
       <Head>
         <title>Kessler - .l</title>
         <meta name="description" content="Hi, I'm Louis and I write code." />
-        <link rel="icon" href="/icon.ico" />
       </Head>
       <Header />
       <main className={classes.main}>

@@ -16,8 +16,8 @@ const PARAS_A = [
     rendered: (
       <>
         I have a{" "}
-        <Link href="/projects/thesis">
-          <a title="Thesis">Masters</a>
+        <Link href="/projects/thesis" title="Thesis">
+          Masters
         </Link>{" "}
         in Computer Science and a Bachelor of Engineering Honours
       </>
@@ -29,8 +29,8 @@ const PARAS_A = [
     rendered: (
       <>
         While studying, I co-founded{" "}
-        <Link href="/projects/createbase">
-          <a title="CreateBase">CreateBase</a>
+        <Link href="/projects/createbase" title="CreateBase">
+          CreateBase
         </Link>
       </>
     ),
@@ -40,8 +40,8 @@ const PARAS_A = [
     rendered: (
       <>
         Other{" "}
-        <Link href="/projects">
-          <a title="Projects">projects</a>
+        <Link href="/projects" title="Projects">
+          projects
         </Link>{" "}
         I&apos;ve worked on:
       </>
@@ -53,8 +53,8 @@ const PARAS_A = [
       <>
         <span className={classes.bulletPoint} />
         The{" "}
-        <Link href="/projects/iamsl-app">
-          <a title="IAMSL app">IAMSL app</a>
+        <Link href="/projects/iamsl-app" title="IAMSL app">
+          IAMSL app
         </Link>
       </>
     ),
@@ -64,8 +64,8 @@ const PARAS_A = [
     rendered: (
       <>
         <span className={classes.bulletPoint} />
-        <Link href="/projects/kessler">
-          <a title="Kessler">Kessler</a>
+        <Link href="/projects/kessler" title="Kessler">
+          Kessler
         </Link>
       </>
     ),
@@ -82,8 +82,8 @@ const PARAS_B = [
     rendered: (
       <>
         I also{" "}
-        <Link href="/studio">
-          <a title="Louii Studios">film and edit</a>
+        <Link href="/studio" title="Louii Studios">
+          film and edit
         </Link>{" "}
         videos for fun
       </>
@@ -148,17 +148,19 @@ const Home: NextPage = () => {
           content="https://raw.githubusercontent.com/louis-cf-lin/louis-cf-lin.github.io/master/public/meta.jpg"
         />
         <meta property="twitter:site" content="@louii_l" />
-        <link rel="icon" href="/icon.ico" />
       </Head>
       <Header isRendered={isRendered} compile={compile} />
       <div ref={ref} className={classes.bg}>
         {isRendered && (
           <Image
             src="/home-bg.jpg"
-            layout="fill"
-            objectFit="cover"
             quality={100}
             alt="Background image"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: "cover",
+            }}
           />
         )}
       </div>
@@ -258,8 +260,9 @@ const Home: NextPage = () => {
               >
                 <Image
                   src="/home-youtube.jpg"
-                  layout="fill"
                   alt="Snow Motion | Queenstown NZ"
+                  fill
+                  sizes="100vw"
                 />
                 {isRendered ? (
                   <button>

@@ -38,7 +38,6 @@ const CreateBase: NextPage = () => {
       <Head>
         <title>CreateBase - .l</title>
         <meta name="description" content="Hi, I'm Louis and I write code." />
-        <link rel="icon" href="/icon.ico" />
       </Head>
       <Header />
       <main className={classes.main}>
@@ -51,10 +50,13 @@ const CreateBase: NextPage = () => {
           <div className={classes.cbLogo}>
             <Image
               src="/cb-logo.svg"
-              layout="intrinsic"
               width={264}
               height={48}
               alt="CreateBase"
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+              }}
             />
           </div>
         </div>
@@ -62,9 +64,12 @@ const CreateBase: NextPage = () => {
           <div className={classes.team}>
             <Image
               src="/cb-team.jpg"
-              layout="fill"
-              objectFit="cover"
               alt="The CreateBase Team"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: "cover",
+              }}
             />
           </div>
           <div className={classes.intro}>
@@ -91,9 +96,12 @@ const CreateBase: NextPage = () => {
           <div className={classes.collage}>
             <Image
               src="/cb-collage.jpg"
-              layout="fill"
-              objectFit="cover"
               alt="CreateBase products"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: "cover",
+              }}
             />
           </div>
           <div className={classes.content}>
