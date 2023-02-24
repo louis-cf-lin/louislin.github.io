@@ -5,7 +5,7 @@ interface Props {
   doubles: boolean | undefined;
 }
 
-const Handles = ({ position, doubles }: Props): JSX.Element => {
+export default function Handles({ position, doubles }: Props) {
   return doubles ? (
     <>
       {["a", "b"].map((dp, i) => (
@@ -38,6 +38,4 @@ const Handles = ({ position, doubles }: Props): JSX.Element => {
       isConnectable={false}
     />
   );
-};
-
-export default Handles;
+}

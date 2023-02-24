@@ -20,7 +20,7 @@ const GenericIcon = ({
   fill = "none",
   pathProps = {},
   ...props
-}: GenericProps): JSX.Element => {
+}: GenericProps) => {
   return (
     <i
       style={{
@@ -54,11 +54,11 @@ const GenericIcon = ({
   );
 };
 
-export const MenuIcon = (props: Props): JSX.Element => {
+export const MenuIcon = (props: Props) => {
   return <GenericIcon {...props} paths={["M6 8H18", "M6 12H18", "M6 16H18"]} />;
 };
 
-export const PlayIcon = (props: Props): JSX.Element => {
+export const PlayIcon = (props: Props) => {
   return (
     <GenericIcon
       {...props}
@@ -69,7 +69,7 @@ export const PlayIcon = (props: Props): JSX.Element => {
   );
 };
 
-export const StopIcon = (props: Props): JSX.Element => {
+export const StopIcon = (props: Props) => {
   return (
     <GenericIcon
       {...props}
@@ -80,7 +80,7 @@ export const StopIcon = (props: Props): JSX.Element => {
   );
 };
 
-export const CodeIcon = (props: Props): JSX.Element => {
+export const CodeIcon = (props: Props) => {
   return (
     <GenericIcon
       {...props}
@@ -89,7 +89,7 @@ export const CodeIcon = (props: Props): JSX.Element => {
   );
 };
 
-export const LockIcon = (props: Props): JSX.Element => {
+export const LockIcon = (props: Props) => {
   return (
     <GenericIcon
       {...props}
@@ -100,7 +100,7 @@ export const LockIcon = (props: Props): JSX.Element => {
   );
 };
 
-export const EnterIcon = (props: Props): JSX.Element => {
+export const EnterIcon = (props: Props) => {
   return (
     <GenericIcon
       {...props}
@@ -114,7 +114,7 @@ export const EnterIcon = (props: Props): JSX.Element => {
   );
 };
 
-export const LaunchIcon = (props: Props): JSX.Element => {
+export const LaunchIcon = (props: Props) => {
   return (
     <GenericIcon
       {...props}
@@ -126,7 +126,7 @@ export const LaunchIcon = (props: Props): JSX.Element => {
   );
 };
 
-export const LouisIcon = (props: Props): JSX.Element => {
+export const LouisIcon = (props: Props) => {
   return (
     <GenericIcon
       {...props}

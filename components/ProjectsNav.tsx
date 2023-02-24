@@ -6,7 +6,7 @@ interface Props {
   active: string;
 }
 
-const ProjectsNav = ({ active }: Props): JSX.Element => {
+export default function ProjectsNav({ active }: Props) {
   return (
     <div className={classes.container}>
       {PROJECTS.map((p) => (
@@ -23,6 +23,4 @@ const ProjectsNav = ({ active }: Props): JSX.Element => {
       ))}
     </div>
   );
-};
-
-export default ProjectsNav;
+}

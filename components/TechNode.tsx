@@ -1,16 +1,16 @@
 import Image from "next/image";
 import { memo } from "react";
 import { Position } from "react-flow-renderer";
-import { ITechNodeData } from "../constants/FLOW_CONFIG";
+import { TechNodeData } from "../constants/FLOW_CONFIG";
 import Handles from "./Handles";
 
 import classes from "./TechNode.module.scss";
 
 interface Props {
-  data: ITechNodeData;
+  data: TechNodeData;
 }
 
-const TechNode = ({ data }: Props): JSX.Element => {
+const TechNode = ({ data }: Props) => {
   return (
     <>
       <Handles position={Position.Top} doubles={data.doubles?.top} />
@@ -19,7 +19,7 @@ const TechNode = ({ data }: Props): JSX.Element => {
       <Handles position={Position.Left} doubles={data.doubles?.left} />
       <div className={classes.node} draggable={false}>
         <div className={classes.imgContainer}>
-          <Image src={`/${data.id}.svg`} alt={data.id} fill sizes="100vw" />
+          <Image src={`/${data.id}.svg`} alt={data.label} fill sizes="100vw" />
         </div>
       </div>
     </>

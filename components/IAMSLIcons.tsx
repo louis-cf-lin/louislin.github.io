@@ -12,10 +12,10 @@ interface Props {
   flexDirection?: "row" | "column";
 }
 
-const IAMSLIcons = ({
+export default function IAMSLIcons({
   className,
   flexDirection = "row",
-}: Props): JSX.Element => {
+}: Props) {
   return (
     <div className={classes.container} style={{ flexDirection: flexDirection }}>
       {COLORS.map((c, i) => (
@@ -45,6 +45,4 @@ const IAMSLIcons = ({
       ))}
     </div>
   );
-};
-
-export default IAMSLIcons;
+}

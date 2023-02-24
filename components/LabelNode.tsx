@@ -1,10 +1,10 @@
 import { memo } from "react";
-import { ILabelNodeData } from "../constants/FLOW_CONFIG";
+import { TitleNodeData } from "../constants/FLOW_CONFIG";
 
 import classes from "./LabelNode.module.scss";
 
 interface Props {
-  data: ILabelNodeData;
+  data: TitleNodeData;
 }
 
 const LabelNode = ({ data }: Props) => {

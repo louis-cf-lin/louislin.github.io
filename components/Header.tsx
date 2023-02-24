@@ -50,7 +50,7 @@ interface Props {
   compile?: () => void;
 }
 
-const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
+export default function Header({ compile, isRendered = true }: Props) {
   const router = useRouter();
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
   const [projectsIsOpen, setProjectsIsOpen] = useState(false);
@@ -197,6 +197,4 @@ const Header = ({ compile, isRendered = true }: Props): JSX.Element => {
       )}
     </header>
   );
-};
-
-export default Header;
+}

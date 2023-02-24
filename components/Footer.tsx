@@ -15,7 +15,7 @@ const TABS = [
   },
 ];
 
-const Footer = (): JSX.Element => {
+export default function Footer() {
   return (
     <footer className={classes.footer}>
       <div className={classes.inner}>
@@ -27,6 +27,4 @@ const Footer = (): JSX.Element => {
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

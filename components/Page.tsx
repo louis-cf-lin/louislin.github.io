@@ -7,7 +7,7 @@ interface Props {
   children: ReactNode;
 }
 
-const Page = ({ children }: Props): JSX.Element => {
+export default function Page({ children }: Props) {
   return (
     <div className={classes.page}>
       <Favicon />
@@ -17,6 +17,4 @@ const Page = ({ children }: Props): JSX.Element => {
       </div>
     </div>
   );
-};
-
-export default Page;
+}

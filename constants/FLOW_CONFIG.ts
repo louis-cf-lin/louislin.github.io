@@ -1,7 +1,8 @@
 import { Node, Position, XYPosition } from "react-flow-renderer";
 
-export interface ITechNodeData {
+export interface TechNodeData {
   id: string;
+  label: string;
   doubles?: {
     top?: boolean;
     right?: boolean;
@@ -10,93 +11,109 @@ export interface ITechNodeData {
   };
 }
 
-export interface ILabelNodeData {
-  label: string;
+export interface TitleNodeData {
+  title: string;
 }
 
-export const NODES: Node<ITechNodeData | ILabelNodeData>[] = [
+export const NODES: Node<TechNodeData | TitleNodeData>[] = [
   {
     id: "figma",
     type: "tech",
-    data: { id: "figma" },
+    data: { id: "figma", label: "Figma" },
     position: { x: 0, y: 0 },
   },
   {
     id: "blender",
     type: "tech",
-    data: { id: "blender" },
+    data: { id: "blender", label: "Blender" },
     position: { x: 150, y: -150 },
   },
   {
     id: "unity",
     type: "tech",
-    data: { id: "unity" },
+    data: { id: "unity", label: "Unity" },
     position: { x: 300, y: -150 },
   },
   {
     id: "photoshop",
     type: "tech",
-    data: { id: "photoshop", doubles: { right: true } },
+    data: {
+      id: "photoshop",
+      label: "Adobe Photoshop",
+      doubles: { right: true },
+    },
     position: { x: 300, y: -300 },
   },
   {
     id: "illustrator",
     type: "tech",
-    data: { id: "illustrator", doubles: { left: true, right: true } },
+    data: {
+      id: "illustrator",
+      label: "Adobe Illustrator",
+      doubles: { left: true, right: true },
+    },
     position: { x: 450, y: -300 },
   },
   {
     id: "premiere",
     type: "tech",
-    data: { id: "premiere", doubles: { left: true } },
+    data: {
+      id: "premiere",
+      label: "Adobe Premiere Pro",
+      doubles: { left: true },
+    },
     position: { x: 600, y: -300 },
   },
   {
     id: "react",
     type: "tech",
-    data: { id: "react", doubles: { right: true } },
+    data: { id: "react", label: "React", doubles: { right: true } },
     position: { x: 600, y: 0 },
   },
   {
     id: "redux",
     type: "tech",
-    data: { id: "redux", doubles: { left: true, right: true } },
+    data: { id: "redux", label: "Redux", doubles: { left: true, right: true } },
     position: { x: 750, y: 0 },
   },
   {
     id: "next",
     type: "tech",
-    data: { id: "next", doubles: { left: true, bottom: true } },
+    data: {
+      id: "next",
+      label: "Next.js",
+      doubles: { left: true, bottom: true },
+    },
     position: { x: 900, y: 0 },
   },
   {
     id: "aws",
     type: "tech",
-    data: { id: "aws" },
+    data: { id: "aws", label: "Amazon Web Services" },
     position: { x: 1050, y: 0 },
   },
   {
     id: "mp",
     type: "tech",
-    data: { id: "mp" },
+    data: { id: "mp", label: "Mixpanel" },
     position: { x: 750, y: 150 },
   },
   {
     id: "mongodb",
     type: "tech",
-    data: { id: "mongodb", doubles: { top: true } },
+    data: { id: "mongodb", label: "MongoDB", doubles: { top: true } },
     position: { x: 900, y: 150 },
   },
   {
     id: "createbase",
     type: "tech",
-    data: { id: "createbase" },
+    data: { id: "createbase", label: "CreateBase" },
     position: { x: 1200, y: 0 },
   },
   {
     id: "h1",
     type: "label",
-    data: { label: "Our tech stack" },
+    data: { title: "Our tech stack" },
     position: { x: 800, y: -200 },
     draggable: false,
   },
