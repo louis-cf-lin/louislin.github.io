@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { useParallax } from "react-scroll-parallax";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import YouTube from "react-youtube";
 import Header from "../components/Header";
 import Typed from "../components/Typed";
@@ -48,11 +48,11 @@ const CONTENT = {
             <Link href="/projects/thesis" title="Thesis">
               Masters 🎓
             </Link>{" "}
-            in Computer Science and a Bachelor of Engineering Honours
+            in Computer Science and a Bachelor of Engineering Honours.
           </>
         ),
         rawString:
-          "I have a [Masters](/projects/thesis) in Computer Science and a Bachelor of Engineering Honours",
+          "I have a [Masters](/projects/thesis) in Computer Science and a Bachelor of Engineering Honours.",
       },
       {
         rendered: (
@@ -61,10 +61,11 @@ const CONTENT = {
             <Link href="/projects/createbase" title="CreateBase">
               CreateBase
             </Link>
+            .
           </>
         ),
         rawString:
-          "While studying, I co-founded [CreateBase](/projects/createbase)",
+          "While studying, I co-founded [CreateBase](/projects/createbase).",
       },
       {
         rendered: (
@@ -115,31 +116,31 @@ const CONTENT = {
         rendered: (
           <>
             I like going to the gym, chilling with friends, and starting side
-            projects I know I won&apos;t finish
+            projects I know I won&apos;t finish.
           </>
         ),
         rawString:
-          "I like going to the gym, chilling with friends, and starting side projects I know I won't finish",
+          "I like going to the gym, chilling with friends, and starting side projects I know I won't finish.",
       },
       {
         rendered: (
           <>
             I also{" "}
             <Link href="/studio" title="Louii Studios">
-              film and edit
+              film and edit 🎞️
             </Link>{" "}
-            videos for fun
+            videos for fun.
           </>
         ),
-        rawString: "I also [film and edit](/studio) videos for fun",
+        rawString: "I also [film and edit](/studio) videos for fun.",
       },
       {
         rendered: (
           <>
-            Here&apos;s my latest work&mdash;<i>Snow Motion</i>
+            Here&apos;s my latest work&mdash;<i>Snow Motion</i>.
           </>
         ),
-        rawString: "Here's my latest work---*Snow Motion*",
+        rawString: "Here's my latest work---*Snow Motion*.",
       },
     ],
     bounds: [20, 40, 250],
@@ -158,6 +159,7 @@ const Home: NextPage = () => {
   });
   const [showYoutubePreview, setShowYoutubePreview] = useState(true);
   const [isRendered, setIsRendered] = useState(false);
+  const [playerReady, setPlayerReady] = useState(false);
   const { ref } = useParallax<HTMLDivElement>({
     speed: -100,
   });
@@ -231,11 +233,10 @@ const Home: NextPage = () => {
       <div ref={ref} className={classes.bg}>
         {isRendered && (
           <Image
-            src="/home-bg.jpg"
+            src="/home/bg.jpg"
             quality={100}
             alt="Background image"
             fill
-            sizes="100vw"
             style={{
               objectFit: "cover",
             }}
@@ -312,10 +313,10 @@ const Home: NextPage = () => {
                 onClick={() => setShowYoutubePreview(false)}
               >
                 <Image
-                  src="/home-youtube.jpg"
+                  src="/home/youtube.jpg"
                   alt="Snow Motion | Queenstown NZ"
                   fill
-                  sizes="100vw"
+                  style={{ objectFit: "cover" }}
                 />
                 {isRendered ? (
                   <button>
@@ -326,14 +327,30 @@ const Home: NextPage = () => {
                 )}
               </div>
             ) : (
-              <YouTube
-                videoId="O-5r8IXsRns"
-                className={classes.youtubeWrapper}
-                iframeClassName={classes.youtube}
-                title="Snow Motion | Queenstown NZ"
-                opts={{ playerVars: { rel: 0, autoplay: 1 } }}
-                onEnd={() => setShowYoutubePreview(true)}
-              />
+              <>
+                <YouTube
+                  videoId="O-5r8IXsRns"
+                  className={classes.youtubeWrapper}
+                  iframeClassName={classes.youtube}
+                  title="Snow Motion | Queenstown NZ"
+                  opts={{ playerVars: { rel: 0, autoplay: 1 } }}
+                  onEnd={() => setShowYoutubePreview(true)}
+                  onReady={() => setPlayerReady(true)}
+                />
+                {!playerReady && (
+                  <div
+                    className={classes.youtubeLoadingBlocker}
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      height: "100%",
+                      width: "100%",
+                      backgroundColor: "white",
+                    }}
+                  />
+                )}
+              </>
             )}
           </div>
         </div>

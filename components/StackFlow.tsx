@@ -6,7 +6,7 @@ import ReactFlow, {
   ReactFlowInstance,
   ConnectionMode,
   NodeTypes,
-} from "react-flow-renderer";
+} from "reactflow";
 import { EDGES, NODES } from "../constants/FLOW_CONFIG";
 import LabelNode from "./LabelNode";
 

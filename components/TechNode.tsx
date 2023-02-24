@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { memo } from "react";
-import { Position } from "react-flow-renderer";
+import { Position } from "reactflow";
 import { TechNodeData } from "../constants/FLOW_CONFIG";
 import Handles from "./Handles";
 
@@ -19,7 +19,12 @@ const TechNode = ({ data }: Props) => {
       <Handles position={Position.Left} doubles={data.doubles?.left} />
       <div className={classes.node} draggable={false}>
         <div className={classes.imgContainer}>
-          <Image src={`/${data.id}.svg`} alt={data.label} fill sizes="100vw" />
+          <Image
+            src={`/createbase/icons/${data.id}.svg`}
+            alt={data.label}
+            fill
+            sizes="100vw"
+          />
         </div>
       </div>
     </>

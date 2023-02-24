@@ -1,4 +1,4 @@
-import { Node, Position, XYPosition } from "react-flow-renderer";
+import { Node, Position, XYPosition } from "reactflow";
 
 export interface TechNodeData {
   id: string;

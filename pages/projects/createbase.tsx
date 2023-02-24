@@ -49,7 +49,7 @@ const CreateBase: NextPage = () => {
           </h1>
           <div className={classes.cbLogo}>
             <Image
-              src="/cb-logo.svg"
+              src="/createbase/createbase-full-logo.svg"
               width={264}
               height={48}
               alt="CreateBase"
@@ -63,7 +63,7 @@ const CreateBase: NextPage = () => {
         <div className={classes.gridDisplay}>
           <div className={classes.team}>
             <Image
-              src="/cb-team.jpg"
+              src="/createbase/team.jpg"
               alt="The CreateBase Team"
               fill
               sizes="100vw"
@@ -95,7 +95,7 @@ const CreateBase: NextPage = () => {
           </div>
           <div className={classes.collage}>
             <Image
-              src="/cb-collage.jpg"
+              src="/createbase/collage.jpg"
               alt="CreateBase products"
               fill
               sizes="100vw"
@@ -127,7 +127,7 @@ const CreateBase: NextPage = () => {
               muted
               playsInline
               style={{ opacity: +isFlowDemo }}
-              src="/flow-demo.mp4"
+              src="/createbase/flow-demo.mp4"
             />
             <video
               autoPlay
@@ -135,7 +135,7 @@ const CreateBase: NextPage = () => {
               muted
               playsInline
               style={{ opacity: +!isFlowDemo }}
-              src="/text-demo.mp4"
+              src="/createbase/text-demo.mp4"
             />
           </div>
           <div className={classes.demoToggle}>

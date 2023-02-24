@@ -20,7 +20,7 @@ const IAMSL = () => {
         <ProjectsNav active="iamsl-app" />
         <div className={`${classes.img} ${classes.ipad}`}>
           <Image
-            src="/iamsl-ipad.jpg"
+            src="/iamsl/ipad.jpg"
             alt="IAMSL app render"
             fill
             sizes="100vw"
@@ -44,7 +44,7 @@ const IAMSL = () => {
         >
           <div className={`${classes.img} ${classes.corner}`}>
             <Image
-              src="/iamsl-corner.png"
+              src="/iamsl/corner.png"
               alt="IAMSL app PDF"
               fill
               sizes="100vw"
@@ -62,7 +62,7 @@ const IAMSL = () => {
               className={`${classes.img} ${classes.collage} ${classes.collageInner}`}
             >
               <Image
-                src="/iamsl-collage.png"
+                src="/iamsl/collage.png"
                 alt="IAMSL app showcase"
                 fill
                 sizes="100vw"

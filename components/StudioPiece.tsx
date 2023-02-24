@@ -24,22 +24,17 @@ const StudioPiece = ({ piece }: Props): JSX.Element => {
       rel="noreferrer"
     >
       <div className={classes.img}>
-        <ParallaxBanner
-          layers={[{ image: `/${piece.img}.jpg`, speed: -5 }]}
-          style={{
-            position: "absolute",
-            height: "100%",
-            width: "100%",
-          }}
-        />
-        <ParallaxBanner
-          layers={[{ image: `/${piece.img}-text.jpg`, speed: -5 }]}
-          style={{
-            position: "absolute",
-            height: "100%",
-            width: "100%",
-          }}
-        />
+        {["", "-text"].map((suffix, i) => (
+          <ParallaxBanner
+            key={i}
+            layers={[{ image: `/studio/${piece.img}${suffix}.jpg`, speed: -5 }]}
+            style={{
+              position: "absolute",
+              height: "100%",
+              width: "100%",
+            }}
+          />
+        ))}
       </div>
       <h2>
         {piece.title}
