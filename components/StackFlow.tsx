@@ -8,11 +8,12 @@ import ReactFlow, {
   NodeTypes,
 } from "reactflow";
 import { EDGES, NODES } from "../constants/FLOW_CONFIG";
-import LabelNode from "./LabelNode";
-
+import TitleNode from "./TitleNode";
 import TechNode from "./TechNode";
 
-const nodeTypes: NodeTypes = { tech: TechNode, label: LabelNode };
+import "reactflow/dist/base.css";
+
+const nodeTypes: NodeTypes = { tech: TechNode, label: TitleNode };
 
 const onInit = (reactFlowInstance: ReactFlowInstance) =>
   console.log("flow loaded:", reactFlowInstance);
@@ -32,8 +33,6 @@ const StackFlow = () => {
       connectionMode={ConnectionMode.Loose}
       nodesConnectable={false}
       elementsSelectable={false}
-      // zoomOnScroll={false}
-      // preventScrolling={false}
       fitView
       attributionPosition="bottom-right"
     >
