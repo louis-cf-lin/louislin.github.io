@@ -2,12 +2,15 @@ const isProd = process.env.NODE_ENV === "production";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  assetPrefix: isProd ? "/louis-cf-lin.github.io/" : "",
+  /** Tell Next.js where the `public` folder is */
+  // assetPrefix: isProd ? "/louis-cf-lin.github.io/" : "/",
   reactStrictMode: true,
+  /** @see https://nextjs.org/blog/next-12-3#disable-image-optimization-stable */
   images: {
     unoptimized: true,
+    loader: "akamai",
+    path: "/",
   },
-  publicPath: "/",
 };
 
 module.exports = nextConfig;
