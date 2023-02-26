@@ -25,6 +25,7 @@ jobs:
           npm i
           npm run build
           npm run export
+          touch out/.nojekyll
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
