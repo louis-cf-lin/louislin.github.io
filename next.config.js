@@ -8,7 +8,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: isProd ? "/" : "",
 };
 
 module.exports = nextConfig;
