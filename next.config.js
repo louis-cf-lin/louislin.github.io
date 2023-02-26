@@ -1,7 +1,12 @@
+const isProd = process.env.NODE_ENV === "production";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  assetPrefix: isProd ? "/louis-cf-lin.github.io/" : "",
   reactStrictMode: true,
-  basePath: "/louis-cf-lin.github.io",
+  images: {
+    unoptimized: true,
+  },
 };
 
 module.exports = nextConfig;
