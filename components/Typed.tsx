@@ -86,12 +86,6 @@ export default function Typed({
         Math.random() * (bounds[1] - bounds[0]) + bounds[0]
       );
     }
-
-    return () => {
-      charTypingTimer.current && clearTimeout(charTypingTimer.current);
-      finishedTypingPauseTimer.current &&
-        clearTimeout(finishedTypingPauseTimer.current);
-    };
   }, [typingState, rawString, bounds, typedLen]);
 
   useEffect(() => {

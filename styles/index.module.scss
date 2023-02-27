@@ -42,7 +42,6 @@
   min-height: 180px;
   max-width: 640px;
   max-height: 360px;
-  border-radius: 8px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -50,6 +49,9 @@
   position: relative;
   &.show {
     opacity: 1;
+  }
+  &.rendered {
+    border-radius: 8px;
   }
   .youtubePreview {
     position: relative;

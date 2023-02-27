@@ -301,10 +301,10 @@ const Home: NextPage = () => {
           </div>
           <div
             className={`${classes.youtubeContainer} ${
-              animIsDone.pHobbies === CONTENT.pHobbies.data.length || isRendered
-                ? classes.show
-                : ""
-            }`}
+              (animIsDone.pHobbies === CONTENT.pHobbies.data.length ||
+                isRendered) &&
+              classes.show
+            } ${isRendered && classes.rendered}`}
             style={{ marginLeft: isRendered ? 0 : "5vw" }}
           >
             {showYoutubePreview ? (
