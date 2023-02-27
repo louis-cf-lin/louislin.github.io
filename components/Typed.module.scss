@@ -1,5 +1,37 @@
 @import "/styles/variables";
 
+.span.rendered {
+  font-family: $poppins !important;
+  a {
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    font-weight: inherit;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 25%;
+      height: 1px;
+      background: grey;
+      transition: width 0.2s ease-out, background-color 0.1s ease-out;
+    }
+    &:hover::after {
+      width: 100%;
+      background: black;
+    }
+  }
+  i {
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    font-weight: inherit;
+    font-style: italic;
+  }
+}
+
 .span {
   font-size: inherit;
   font-family: inherit;
@@ -7,8 +39,9 @@
   font-weight: inherit;
   &.hide {
     opacity: 0;
-    width: 0;
-    display: inline-block;
+  }
+  &.show {
+    opacity: 1;
   }
   &.last {
     position: relative;
@@ -24,64 +57,13 @@
       animation: blink 1s linear 0.2s infinite;
     }
   }
-  &.typed {
-    width: calc(100% - 5vw);
-    display: block;
-    position: relative;
-    margin-left: 3vw;
-    padding-left: 2vw;
-  }
-  &.rendered {
-    font-family: $poppins !important;
-    a {
-      font-size: inherit;
-      font-family: inherit;
-      color: inherit;
-      font-weight: inherit;
-      position: relative;
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 25%;
-        height: 1px;
-        background: grey;
-        transition: width 0.2s ease-out, background-color 0.1s ease-out;
-      }
-      &:hover::after {
-        width: 100%;
-        background: black;
-      }
-    }
-  }
 }
 
-.h1 {
+.container {
+  display: block;
+  width: 100%;
   position: relative;
-  font-size: 2rem;
-  line-height: 1.75em;
-  margin-top: 1em;
-}
-
-.h2 {
-  position: relative;
-  font-size: 1.5rem;
-  line-height: 1.75em;
-  margin-top: 1em;
-}
-
-.p {
-  position: relative;
-  font-size: 12px;
-  line-height: 1.75em;
-  margin-top: 1.5em;
-}
-
-.awaiting {
-  font-size: 12px !important;
-  line-height: 1.75em !important;
-  margin-top: 1.5em !important;
+  margin-left: 5vw;
 }
 
 .border {
@@ -123,25 +105,7 @@
 }
 
 @media only screen and (min-width: 480px) {
-  .h1 {
-    font-size: 3rem;
-  }
-  .h2 {
-    font-size: 2rem;
-  }
-  .p {
-    font-size: 14px;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  .h1 {
-    font-size: 4rem;
-  }
-  .h2 {
-    font-size: 3rem;
-  }
-  .p {
-    font-size: 1rem;
-  }
+  // .container {
+  //   margin-left: 1rem;
+  // }
 }
