@@ -1,36 +1,51 @@
-import { useEffect, useRef, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
+import { Bounds } from "../pages";
 
 import classes from "./Typed.module.scss";
 
 interface Props {
-  html: { rendered: JSX.Element; typed: string };
+  rendered: JSX.Element;
+  rawString: string;
+  bounds: Bounds;
   ready: boolean;
   isRendered: boolean;
   lineNumber: number;
+  tag: "h1" | "h2" | "p";
   callback?: () => void;
-  bounds?: [number, number, number];
 }
 
-const Typed = ({
-  html,
+export default function Typed({
+  rendered,
+  rawString,
+  bounds,
   ready,
   isRendered,
   lineNumber,
-  bounds = [25, 50, 1000],
+  tag,
   callback,
-}: Props): JSX.Element => {
-  const elRef = useRef<HTMLSpanElement>(null);
-  const charsRef = useRef(html.typed.split(""));
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const finishedTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const [len, setLen] = useState(0);
+}: Props) {
+  const currentCharEl = useRef<HTMLSpanElement>(null);
+  const charTypingTimer = useRef<NodeJS.Timeout | null>(null);
+  const finishedTypingPauseTimer = useRef<NodeJS.Timeout | null>(null);
+  const [typedLen, setTypedLen] = useState(0);
   const [inView, setInView] = useState(false);
-  const [showCursor, setShowCursor] = useState(false);
+  const [typingState, setTypingState] = useState<
+    "awaiting" | "inProgress" | "complete"
+  >("awaiting");
+  const [borderHeight, setBorderHeight] = useState(0);
 
   useEffect(() => {
     const detect = () => {
       if (
-        (elRef.current?.getBoundingClientRect()?.top || 0) < window.innerHeight
+        currentCharEl.current &&
+        currentCharEl.current.getBoundingClientRect().top < window.innerHeight
       ) {
         window.removeEventListener("scroll", detect);
         setInView(true);
@@ -40,64 +55,100 @@ const Typed = ({
     detect();
     return () => {
       window.removeEventListener("scroll", detect);
-      clearTimeout(timeoutRef.current as NodeJS.Timeout);
-      clearTimeout(finishedTimeoutRef.current as NodeJS.Timeout);
+      clearTimeout(charTypingTimer.current as NodeJS.Timeout);
+      clearTimeout(finishedTypingPauseTimer.current as NodeJS.Timeout);
     };
   }, []);
 
   useEffect(() => {
-    if (ready && inView) {
-      if (len <= charsRef.current.length) {
-        setShowCursor(true);
-        timeoutRef.current = setTimeout(() => {
-          setLen((l) => l + 1);
-        }, Math.random() * (bounds[1] - bounds[0]) + bounds[0]);
-      } else {
-        finishedTimeoutRef.current = setTimeout(() => {
-          setShowCursor(false);
-          callback?.();
-        }, bounds[2]);
-      }
+    if (ready && inView) setTypingState("inProgress");
+  }, [ready, inView]);
+
+  useEffect(() => {
+    if (typingState === "inProgress") {
+      setBorderHeight(currentCharEl.current?.offsetHeight || 0);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [len, ready, inView]);
+  }, [typingState]);
 
-  if (isRendered)
-    return (
-      <span className={`${classes.span} ${classes.rendered}`}>
-        {html.rendered}
-      </span>
-    );
+  useEffect(() => {
+    if (typingState === "inProgress" && typedLen < rawString.length) {
+      charTypingTimer.current = setTimeout(
+        () =>
+          setTypedLen((l) => {
+            if (l === rawString.length - 1) {
+              finishedTypingPauseTimer.current = setTimeout(
+                () => setTypingState("complete"),
+                bounds[2]
+              );
+            }
+            return l + 1;
+          }),
+        Math.random() * (bounds[1] - bounds[0]) + bounds[0]
+      );
+    }
 
-  return (
-    <span className={`${classes.span} ${classes.container}`}>
-      {charsRef.current.map((c, i) => (
-        <span
-          key={i}
-          ref={i === len - 1 ? elRef : undefined}
-          className={`${classes.span} ${
-            i < len ? classes.show : classes.hide
-          } ${
-            (i === len - 1 || i === charsRef.current.length - 1) && showCursor
-              ? classes.last
-              : ""
-          }`}
-        >
-          {c}
+    return () => {
+      charTypingTimer.current && clearTimeout(charTypingTimer.current);
+      finishedTypingPauseTimer.current &&
+        clearTimeout(finishedTypingPauseTimer.current);
+    };
+  }, [typingState, rawString, bounds, typedLen]);
+
+  useEffect(() => {
+    if (typingState === "complete") {
+      callback?.();
+    }
+  }, [typingState, callback]);
+
+  const content = (
+    <>
+      {isRendered ? (
+        <span className={`${classes.span} ${classes.rendered}`}>
+          {rendered}
         </span>
-      ))}
-      {showCursor && elRef.current && (
-        <span
-          className={classes.border}
-          style={{
-            top: elRef.current.offsetTop,
-            height: elRef.current?.offsetHeight + 4,
-          }}
-        />
+      ) : (
+        <span className={`${classes.span} ${classes.typed}`}>
+          {rawString.split("").map((char, i) => {
+            return (
+              <span
+                key={i}
+                ref={i === 0 ? currentCharEl : undefined}
+                className={`${classes.span} ${i >= typedLen && classes.hide} ${
+                  (i === typedLen - 1 || i === rawString.length - 1) &&
+                  typingState === "inProgress"
+                    ? classes.last
+                    : ""
+                }`}
+              >
+                {char}
+              </span>
+            );
+          })}
+          <span className={classes.lineNumber}>{lineNumber}</span>
+          {typingState === "inProgress" && currentCharEl.current && (
+            <span
+              className={classes.border}
+              style={{
+                bottom: 0,
+                height: borderHeight,
+              }}
+            />
+          )}
+        </span>
       )}
-      <span className={classes.lineNumber}>{lineNumber}</span>
-    </span>
+    </>
   );
-};
 
-export default Typed;
+  const awaitingClass =
+    !isRendered && typingState === "awaiting" && classes.awaiting;
+
+  if (tag === "h1") {
+    return <h1 className={`${classes.h1} ${awaitingClass}`}>{content}</h1>;
+  }
+
+  if (tag === "h2") {
+    return <h2 className={`${classes.h2} ${awaitingClass}`}>{content}</h2>;
+  }
+
+  return <p className={`${classes.p} ${awaitingClass}`}>{content}</p>;
+}

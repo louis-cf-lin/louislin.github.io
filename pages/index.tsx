@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { useParallax } from "react-scroll-parallax";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import YouTube from "react-youtube";
 import Header from "../components/Header";
 import Typed from "../components/Typed";
@@ -11,104 +11,155 @@ import Link from "next/link";
 import { PlayIcon } from "../components/Icon";
 import Page from "../components/Page";
 
-const PARAS_A = [
-  {
-    rendered: (
-      <>
-        I have a{" "}
-        <Link href="/projects/thesis">
-          <a title="Thesis">Masters</a>
-        </Link>{" "}
-        in Computer Science and a Bachelor of Engineering Honours
-      </>
-    ),
-    typed:
-      "I have a [Masters](/projects/thesis) in Computer Science and a Bachelor of Engineering Honours",
-  },
-  {
-    rendered: (
-      <>
-        While studying, I co-founded{" "}
-        <Link href="/projects/createbase">
-          <a title="CreateBase">CreateBase</a>
-        </Link>
-      </>
-    ),
-    typed: "While studying, I co-founded [CreateBase](/projects/createbase)",
-  },
-  {
-    rendered: (
-      <>
-        Other{" "}
-        <Link href="/projects">
-          <a title="Projects">projects</a>
-        </Link>{" "}
-        I&apos;ve worked on:
-      </>
-    ),
-    typed: "Other [projects](/projects) I've worked on:",
-  },
-  {
-    rendered: (
-      <>
-        <span className={classes.bulletPoint} />
-        The{" "}
-        <Link href="/projects/iamsl-app">
-          <a title="IAMSL app">IAMSL app</a>
-        </Link>
-      </>
-    ),
-    typed: "- The [IAMSL app](/projects/iamsl-app)",
-  },
-  {
-    rendered: (
-      <>
-        <span className={classes.bulletPoint} />
-        <Link href="/projects/kessler">
-          <a title="Kessler">Kessler</a>
-        </Link>
-      </>
-    ),
-    typed: "- [Kessler](/projects/kessler)",
-  },
-];
+type HTMLData = {
+  rendered: JSX.Element;
+  rawString: string;
+};
 
-const PARAS_B = [
-  {
-    rendered: <>I like rowing and enjoy being around friends</>,
-    typed: "I like rowing and enjoy being around friends",
+// Bounds specifies three parameters for typing speed
+// All values are in milliseconds
+// [min duration, max duration, delay after typing a line]
+export type Bounds = [number, number, number];
+
+type ContentId = "h1" | "h2PyTs" | "pExperience" | "h2Other" | "pHobbies";
+
+type Content = Record<
+  ContentId,
+  (HTMLData | { data: HTMLData[] }) & { bounds: Bounds }
+>;
+
+const CONTENT = {
+  h1: {
+    rendered: <>Hi, I&apos;m Louis and I write code</>,
+    rawString: "# Hi, I'm Louis and I write code",
+    bounds: [125, 25, 1500],
   },
-  {
-    rendered: (
-      <>
-        I also{" "}
-        <Link href="/studio">
-          <a title="Louii Studios">film and edit</a>
-        </Link>{" "}
-        videos for fun
-      </>
-    ),
-    typed: "I also [film and edit](/studio) videos for fun",
+  h2PyTs: {
+    rendered: <>Mostly in Python &amp; TypeScript</>,
+    rawString: "## Mostly in Python & TypeScript",
+    bounds: [50, 25, 1000],
   },
-  {
-    rendered: (
-      <>
-        Here&apos;s my latest work&mdash;<i>Snow Motion</i>
-      </>
-    ),
-    typed: "Here's my latest work---*Snow Motion*",
+  pExperience: {
+    data: [
+      {
+        rendered: (
+          <>
+            I have a{" "}
+            <Link href="/projects/thesis" title="Thesis">
+              Masters 🎓
+            </Link>{" "}
+            in Computer Science and a Bachelor of Engineering Honours.
+          </>
+        ),
+        rawString:
+          "I have a [Masters](/projects/thesis) in Computer Science and a Bachelor of Engineering Honours.",
+      },
+      {
+        rendered: (
+          <>
+            While studying, I co-founded{" "}
+            <Link href="/projects/createbase" title="CreateBase">
+              CreateBase
+            </Link>
+            .
+          </>
+        ),
+        rawString:
+          "While studying, I co-founded [CreateBase](/projects/createbase).",
+      },
+      {
+        rendered: (
+          <>
+            Other{" "}
+            <Link href="/projects" title="Projects">
+              projects
+            </Link>{" "}
+            I&apos;ve worked on:
+          </>
+        ),
+        rawString: "Other [projects](/projects) I've worked on:",
+      },
+      {
+        rendered: (
+          <>
+            <span className={classes.bulletPoint} />
+            The{" "}
+            <Link href="/projects/iamsl-app" title="IAMSL app">
+              IAMSL app
+            </Link>
+          </>
+        ),
+        rawString: "- The [IAMSL app](/projects/iamsl-app)",
+      },
+      {
+        rendered: (
+          <>
+            <span className={classes.bulletPoint} />
+            <Link href="/projects/kessler" title="Kessler">
+              Kessler 🛰️
+            </Link>
+          </>
+        ),
+        rawString: "- [Kessler](/projects/kessler)",
+      },
+    ],
+    bounds: [40, 20, 250],
   },
-];
+  h2Other: {
+    rendered: <>Other fun stuff I do</>,
+    rawString: "## Other fun stuff I do",
+    bounds: [75, 25, 1000],
+  },
+  pHobbies: {
+    data: [
+      {
+        rendered: (
+          <>
+            I like going to the gym, chilling with friends, and starting side
+            projects I know I won&apos;t finish.
+          </>
+        ),
+        rawString:
+          "I like going to the gym, chilling with friends, and starting side projects I know I won't finish.",
+      },
+      {
+        rendered: (
+          <>
+            I also{" "}
+            <Link href="/studio" title="Louii Studios">
+              film and edit 🎞️
+            </Link>{" "}
+            videos for fun.
+          </>
+        ),
+        rawString: "I also [film and edit](/studio) videos for fun.",
+      },
+      {
+        rendered: (
+          <>
+            Here&apos;s my latest work&mdash;<i>Snow Motion</i>.
+          </>
+        ),
+        rawString: "Here's my latest work---*Snow Motion*.",
+      },
+    ],
+    bounds: [20, 40, 250],
+  },
+} satisfies Content;
 
 const Home: NextPage = () => {
-  const [h1Ready, setH1Ready] = useState(false);
-  const [h2AReady, setH2AReady] = useState(false);
-  const [h2BReady, setH2BReady] = useState(false);
-  const [pAReady, setPAReady] = useState(PARAS_A.map((_) => false));
-  const [pBReady, setPBReady] = useState(PARAS_B.map((_) => false));
-  const [youtubeReady, setYoutubeReady] = useState(false);
-  const [showPreview, setShowPreview] = useState(true);
+  const [animIsDone, setAnimIsDone] = useState({
+    init: false,
+    h1: false,
+    h2PyTs: false,
+    pExperience: 0,
+    h2Other: false,
+    pHobbies: 0,
+    youtube: false,
+  });
+  const [showYoutubePreview, setShowYoutubePreview] = useState(true);
   const [isRendered, setIsRendered] = useState(false);
+  const [playerReady, setPlayerReady] = useState(false);
   const { ref } = useParallax<HTMLDivElement>({
     speed: -100,
   });
@@ -119,12 +170,41 @@ const Home: NextPage = () => {
         console.log(e);
       }
     });
-    setTimeout(() => setH1Ready(true), 500);
+    setTimeout(() => setAnimIsDone((state) => ({ ...state, init: true })), 500);
   }, []);
 
   const compile = () => {
     setIsRendered((state) => !state);
   };
+
+  const h1Callback = useCallback(
+    () => setAnimIsDone((state) => ({ ...state, h1: true })),
+    []
+  );
+  const h2PyTsCallback = useCallback(
+    () => setAnimIsDone((state) => ({ ...state, h2PyTs: true })),
+    []
+  );
+  const pExperienceCallback = useCallback(
+    () =>
+      setAnimIsDone((state) => ({
+        ...state,
+        pExperience: state.pExperience + 1,
+      })),
+    []
+  );
+  const h2OtherCallback = useCallback(
+    () => setAnimIsDone((state) => ({ ...state, h2Other: true })),
+    []
+  );
+  const pHobbiesCallback = useCallback(
+    () =>
+      setAnimIsDone((state) => ({
+        ...state,
+        pHobbies: state.pHobbies + 1,
+      })),
+    []
+  );
 
   return (
     <Page>
@@ -148,118 +228,95 @@ const Home: NextPage = () => {
           content="https://raw.githubusercontent.com/louis-cf-lin/louis-cf-lin.github.io/master/public/meta.jpg"
         />
         <meta property="twitter:site" content="@louii_l" />
-        <link rel="icon" href="/icon.ico" />
       </Head>
       <Header isRendered={isRendered} compile={compile} />
       <div ref={ref} className={classes.bg}>
         {isRendered && (
           <Image
-            src="/home-bg.jpg"
-            layout="fill"
-            objectFit="cover"
+            src="/home/bg.jpg"
             quality={100}
             alt="Background image"
+            fill
+            style={{
+              objectFit: "cover",
+            }}
           />
         )}
       </div>
       <main className={classes.main}>
-        <h1 className={classes.h1}>
+        <Typed
+          isRendered={isRendered}
+          lineNumber={1}
+          ready={animIsDone.init}
+          callback={h1Callback}
+          tag="h1"
+          {...CONTENT.h1}
+        />
+        <Typed
+          isRendered={isRendered}
+          lineNumber={2}
+          ready={animIsDone.h1}
+          callback={h2PyTsCallback}
+          tag="h2"
+          {...CONTENT.h2PyTs}
+        />
+        {CONTENT.pExperience.data.map((data, i) => (
           <Typed
-            html={{
-              rendered: <>Hi, I&apos;m Louis and I write code</>,
-              typed: "# Hi, I'm Louis and I write code",
-            }}
+            key={"paras_a" + i}
+            ready={i === 0 ? animIsDone.h2PyTs : animIsDone.pExperience === i}
+            lineNumber={3 + i}
             isRendered={isRendered}
-            lineNumber={1}
-            ready={h1Ready}
-            callback={() => setH2AReady(true)}
-            bounds={[125, 25, 1500]}
+            callback={pExperienceCallback}
+            bounds={CONTENT.pExperience.bounds}
+            tag="p"
+            {...data}
           />
-        </h1>
-        <h2 className={classes.h2}>
-          <Typed
-            html={{
-              rendered: <>Mostly in Python &amp; TypeScript</>,
-              typed: "## Mostly in Python & TypeScript",
-            }}
-            isRendered={isRendered}
-            lineNumber={2}
-            ready={h2AReady}
-            callback={() => setPAReady((state) => state.map((_, i) => i === 0))}
-            bounds={[50, 25, 1000]}
-          />
-        </h2>
-        {PARAS_A.map((p, i) => (
-          <p key={"paras_a" + i} className={classes.p}>
-            <Typed
-              html={p}
-              ready={pAReady[i]}
-              lineNumber={3 + i}
-              isRendered={isRendered}
-              callback={() =>
-                i === PARAS_A.length - 1
-                  ? setH2BReady(true)
-                  : setPAReady((state) =>
-                      state.map((_s, _i) => (_i === i + 1 ? true : _s))
-                    )
-              }
-              bounds={[40, 20, 250]}
-            />
-          </p>
         ))}
-        <h2 className={classes.h2}>
-          <Typed
-            html={{
-              rendered: <>Other fun stuff I do</>,
-              typed: "## Other fun stuff I do",
-            }}
-            ready={h2BReady}
-            isRendered={isRendered}
-            lineNumber={3 + PARAS_A.length}
-            callback={() => setPBReady((state) => state.map((_, i) => i === 0))}
-            bounds={[75, 25, 1000]}
-          />
-        </h2>
+        <Typed
+          ready={animIsDone.pExperience === CONTENT.pExperience.data.length}
+          isRendered={isRendered}
+          lineNumber={3 + CONTENT.pExperience.data.length}
+          callback={h2OtherCallback}
+          tag="h2"
+          {...CONTENT.h2Other}
+        />
         <div
-          className={`${classes.partB} ${
-            isRendered ? classes.partBRendered : ""
+          className={`${classes.pExperience} ${
+            isRendered ? classes.pExperienceRendered : ""
           }`}
         >
-          <div className={classes.partBText}>
-            {PARAS_B.map((p, i) => (
-              <p key={"paras_b" + i} className={classes.p}>
-                <Typed
-                  html={p}
-                  ready={pBReady[i]}
-                  isRendered={isRendered}
-                  lineNumber={4 + PARAS_A.length + i}
-                  callback={() =>
-                    i === PARAS_B.length - 1
-                      ? setYoutubeReady(true)
-                      : setPBReady((state) =>
-                          state.map((_s, _i) => (_i === i + 1 ? true : _s))
-                        )
-                  }
-                  bounds={[20, 40, 250]}
-                />
-              </p>
+          <div className={classes.pExperienceText}>
+            {CONTENT.pHobbies.data.map((data, i) => (
+              <Typed
+                key={"paras_b" + i}
+                ready={i === 0 ? animIsDone.h2Other : animIsDone.pHobbies === i}
+                isRendered={isRendered}
+                lineNumber={4 + CONTENT.pExperience.data.length + i}
+                callback={pHobbiesCallback}
+                bounds={CONTENT.pHobbies.bounds}
+                tag="p"
+                {...data}
+              />
             ))}
           </div>
           <div
             className={`${classes.youtubeContainer} ${
-              youtubeReady || isRendered ? classes.show : ""
+              animIsDone.pHobbies === CONTENT.pHobbies.data.length || isRendered
+                ? classes.show
+                : ""
             }`}
             style={{ marginLeft: isRendered ? 0 : "5vw" }}
           >
-            {showPreview ? (
+            {showYoutubePreview ? (
               <div
                 className={classes.youtubePreview}
-                onClick={() => setShowPreview(false)}
+                onClick={() => setShowYoutubePreview(false)}
               >
                 <Image
-                  src="/home-youtube.jpg"
-                  layout="fill"
+                  src="/home/youtube.jpg"
                   alt="Snow Motion | Queenstown NZ"
+                  fill
+                  style={{ objectFit: "cover" }}
                 />
                 {isRendered ? (
                   <button>
@@ -270,14 +327,30 @@ const Home: NextPage = () => {
                 )}
               </div>
             ) : (
-              <YouTube
-                videoId="O-5r8IXsRns"
-                className={classes.youtubeWrapper}
-                iframeClassName={classes.youtube}
-                title="Snow Motion | Queenstown NZ"
-                opts={{ playerVars: { rel: 0, autoplay: 1 } }}
-                onEnd={() => setShowPreview(true)}
-              />
+              <>
+                <YouTube
+                  videoId="O-5r8IXsRns"
+                  className={classes.youtubeWrapper}
+                  iframeClassName={classes.youtube}
+                  title="Snow Motion | Queenstown NZ"
+                  opts={{ playerVars: { rel: 0, autoplay: 1 } }}
+                  onEnd={() => setShowYoutubePreview(true)}
+                  onReady={() => setPlayerReady(true)}
+                />
+                {!playerReady && (
+                  <div
+                    className={classes.youtubeLoadingBlocker}
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      height: "100%",
+                      width: "100%",
+                      backgroundColor: "white",
+                    }}
+                  />
+                )}
+              </>
             )}
           </div>
         </div>
